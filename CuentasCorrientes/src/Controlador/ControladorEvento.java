@@ -4,6 +4,7 @@ package Controlador;
 import Vista.FrameCliente;
 import Vista.FrameObra;
 import Vista.FrameRemito;
+import Vista.FrameVerRemitos;
 import Vista.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,7 @@ public class ControladorEvento {
    FrameObra frameObra;
    FrameRemito frameRemito;
    FrameCliente frameCliente;
+   FrameVerRemitos frameVerRemitos;
     
     public ControladorEvento(Principal vista){
         
@@ -71,6 +73,22 @@ public class ControladorEvento {
                     frameCliente.setVisible(true);
                }else{
                       vista.escritorio.getDesktopManager().maximizeFrame(frameCliente);
+               }
+               }
+          
+       });
+              this.vista.lblVerRemitos.addMouseListener(new MouseAdapter(){
+            
+           
+           public void mousePressed(MouseEvent e){
+               
+               if(frameVerRemitos == null){
+                        frameVerRemitos = new FrameVerRemitos();
+                       vista.escritorio.add(frameVerRemitos);
+                 vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
+                    frameVerRemitos.setVisible(true);
+               }else{
+                      vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
                }
                }
           
