@@ -54,11 +54,6 @@ public class FrameVerRemitos extends javax.swing.JInternalFrame {
         txtBuscarRemito.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscarRemito.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtBuscarRemito.setBorder(null);
-        txtBuscarRemito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarRemitoActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtBuscarRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 370, 30));
 
         radioCliente.setBackground(new java.awt.Color(0, 0, 0));
@@ -76,7 +71,7 @@ public class FrameVerRemitos extends javax.swing.JInternalFrame {
 
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
-        tablaRemitos.setForeground(new java.awt.Color(255, 255, 255));
+        tablaRemitos.setForeground(new java.awt.Color(0, 0, 0));
         tablaRemitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -106,15 +101,11 @@ public class FrameVerRemitos extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtBuscarRemitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarRemitoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarRemitoActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     public javax.swing.JRadioButton radioCliente;

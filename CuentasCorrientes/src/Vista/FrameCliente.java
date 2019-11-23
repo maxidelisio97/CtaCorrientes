@@ -66,7 +66,7 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jTextField1.setForeground(new java.awt.Color(204, 204, 204));
         jTextField1.setText("-");
         jTextField1.setBorder(null);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel4.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
@@ -166,7 +166,7 @@ public class FrameCliente extends javax.swing.JInternalFrame {
                         .addComponent(jLabel5)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(95, 95, 95)

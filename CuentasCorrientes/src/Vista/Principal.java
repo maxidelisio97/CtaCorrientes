@@ -16,10 +16,12 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
-        frameObra = new FrameObra();
-        frameObra.setVisible(false);
+   
+        
+       
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,7 +62,6 @@ public class Principal extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(255, 255, 255));
         jTextField1.setText("Buscar...");
-        jTextField1.setBorder(null);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_search_2944878.png"))); // NOI18N
 
@@ -238,4 +239,5 @@ public class Principal extends javax.swing.JFrame {
     public java.awt.Panel panel2;
     // End of variables declaration//GEN-END:variables
     public FrameObra frameObra;
+    public FrameVerRemitos frameRemitos=new FrameVerRemitos();
 }
