@@ -5,6 +5,8 @@
  */
 package Vista;
 
+import java.awt.Color;
+
 /**
  *
  * @author maxid
@@ -33,153 +35,92 @@ public class Principal extends javax.swing.JFrame {
 
         panel2 = new java.awt.Panel();
         panel1 = new java.awt.Panel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jSeparator5 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        labelNuevaObra = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        labelNuevoRemito = new javax.swing.JLabel();
-        jSeparator2 = new javax.swing.JSeparator();
         labelNuevoCliente = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
-        jSeparator4 = new javax.swing.JSeparator();
+        labelCliente = new javax.swing.JLabel();
+        labelNuevaObra = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        labelNuevoRemito = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblVerRemitos = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panel2.setBackground(new java.awt.Color(0, 0, 0));
+        panel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        panel1.setBackground(new java.awt.Color(102, 102, 102));
+        panel1.setBackground(new java.awt.Color(255, 255, 255));
+        panel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei Light", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Cuentas corrientes");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-search-50.png"))); // NOI18N
+        panel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 0, -1, 60));
 
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Buscar...");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_search_2944878.png"))); // NOI18N
+        labelNuevoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        labelNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-contacts-50.png"))); // NOI18N
+        labelNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        labelNuevoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        labelNuevoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                labelNuevoClienteMousePressed(evt);
+            }
+        });
+        jPanel1.add(labelNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 50, 70));
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 153));
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        labelCliente.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        labelCliente.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        labelCliente.setText("Cliente");
+        jPanel1.add(labelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, -1, 60));
 
         labelNuevaObra.setForeground(new java.awt.Color(255, 255, 255));
-        labelNuevaObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_tool_1421626 (2).png"))); // NOI18N
-        labelNuevaObra.setText("Nueva obra");
+        labelNuevaObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-home-50.png"))); // NOI18N
         labelNuevaObra.setFocusable(false);
         labelNuevaObra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         labelNuevaObra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(labelNuevaObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, 60));
+
+        jLabel4.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("Nueva obra");
+        jLabel4.setToolTipText("");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 100, 110, 60));
 
         labelNuevoRemito.setForeground(new java.awt.Color(255, 255, 255));
-        labelNuevoRemito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_635_Bill_excel_file_invoice_statement_4017677.png"))); // NOI18N
-        labelNuevoRemito.setText("Nuevo remito");
+        labelNuevoRemito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-document-50.png"))); // NOI18N
         labelNuevoRemito.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         labelNuevoRemito.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(labelNuevoRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 60));
 
-        labelNuevoCliente.setForeground(new java.awt.Color(255, 255, 255));
-        labelNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_icon-person-add_211872.png"))); // NOI18N
-        labelNuevoCliente.setText("Nuevo cliente");
-        labelNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        labelNuevoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(labelNuevoCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelNuevoRemito, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jSeparator2)
-                        .addComponent(jSeparator1)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelNuevaObra))
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(labelNuevaObra, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNuevoRemito, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelNuevoCliente)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        jSeparator4.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jLabel1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Subir remitos");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 110, 60));
 
         lblVerRemitos.setForeground(new java.awt.Color(255, 255, 255));
-        lblVerRemitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/file_format_pdf.png"))); // NOI18N
-        lblVerRemitos.setText("Ver remito");
+        lblVerRemitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-box-50.png"))); // NOI18N
         lblVerRemitos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblVerRemitos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(lblVerRemitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, 50));
 
-        javax.swing.GroupLayout panel1Layout = new javax.swing.GroupLayout(panel1);
-        panel1.setLayout(panel1Layout);
-        panel1Layout.setHorizontalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(lblVerRemitos)))
-                .addGap(158, 158, Short.MAX_VALUE))
-        );
-        panel1Layout.setVerticalGroup(
-            panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(panel1Layout.createSequentialGroup()
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(2, 2, 2)
-                                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                        .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())
-                    .addGroup(panel1Layout.createSequentialGroup()
-                        .addGap(133, 133, 133)
-                        .addComponent(lblVerRemitos)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        jLabel5.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Ver Cta Corriente");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 160, 62));
+
+        panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, -1));
 
         escritorio.setBackground(new java.awt.Color(51, 51, 51));
+        escritorio.setPreferredSize(new java.awt.Dimension(629, 400));
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
+            .addGap(0, 636, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,29 +132,39 @@ public class Principal extends javax.swing.JFrame {
         panel2Layout.setHorizontalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel2Layout.createSequentialGroup()
-                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(escritorio))
+                .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         panel2Layout.setVerticalGroup(
             panel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(escritorio)
+            .addComponent(panel1, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel2Layout.createSequentialGroup()
+                .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 584, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(panel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void labelNuevoClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelNuevoClienteMousePressed
+        
+        labelCliente.setForeground(Color.red);
+    }//GEN-LAST:event_labelNuevoClienteMousePressed
 
     /**
      * @param args the command line arguments
@@ -224,13 +175,10 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel labelCliente;
     public javax.swing.JLabel labelNuevaObra;
     public javax.swing.JLabel labelNuevoCliente;
     public javax.swing.JLabel labelNuevoRemito;
