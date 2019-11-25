@@ -2,6 +2,8 @@
 package Controlador;
 
 import Modelo.BaseDatos;
+import Modelo.Cliente;
+import Modelo.Obra;
 import Vista.FrameCliente;
 import Vista.FrameObra;
 import Vista.FrameRemito;
@@ -14,8 +16,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -28,24 +32,30 @@ public class ControladorEvento {
    FrameVerRemitos frameVerRemitos;
    private BaseDatos bd;
    private DefaultTableModel modeloTablaRemitos= new DefaultTableModel();
+   private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
    
     
-    public ControladorEvento(Principal vista, BaseDatos bd,FrameVerRemitos frameVerRemitos){
+    public ControladorEvento(Principal vista, BaseDatos bd,FrameVerRemitos frameVerRemitos,FrameCliente frameCliente,FrameObra frameObra,
+     FrameRemito frameRemito)
+    {
         
         this.vista = vista;
         this.bd = bd;
         this.frameVerRemitos= frameVerRemitos;
+        this.frameCliente=frameCliente;
+        this.frameObra=frameObra;
+        this.frameRemito=frameRemito;
         //frameVerRemitos = new FrameVerRemitos();
         cargarModeloTabla();
-        
+        cargarModeloComboClientes();
         
        this.vista.labelNuevaObra.addMouseListener(new MouseAdapter(){
             
            
            public void mousePressed(MouseEvent e){
                
-               if(frameObra == null){
-                        frameObra = new FrameObra();
+               if(!frameObra.isVisible()){
+                      
                        vista.escritorio.add(frameObra);
                  vista.escritorio.getDesktopManager().maximizeFrame(frameObra);
                     frameObra.setVisible(true);
@@ -63,8 +73,8 @@ public class ControladorEvento {
            
            public void mousePressed(MouseEvent e){
                
-               if(frameRemito == null){
-                        frameRemito = new FrameRemito();
+               if(!frameRemito.isVisible()){
+                       
                        vista.escritorio.add(frameRemito);
                  vista.escritorio.getDesktopManager().maximizeFrame(frameRemito);
                     frameRemito.setVisible(true);
@@ -80,14 +90,26 @@ public class ControladorEvento {
            
            public void mousePressed(MouseEvent e){
                
-               if(frameCliente == null){
-                        frameCliente = new FrameCliente();
+               if(!frameCliente.isVisible()){
+                      
                        vista.escritorio.add(frameCliente);
                  vista.escritorio.getDesktopManager().maximizeFrame(frameCliente);
                     frameCliente.setVisible(true);
                }else{
                       vista.escritorio.getDesktopManager().maximizeFrame(frameCliente);
                }
+               }
+          
+       });
+           
+           frameObra.lblInsertarObra.addMouseListener(new MouseAdapter(){
+            
+           
+           public void mousePressed(MouseEvent e){
+               
+               Obra obra = enviarObra();
+               bd.insertNuevaObra(obra);
+       
                }
           
        });
@@ -109,6 +131,18 @@ public class ControladorEvento {
                }
           
        });
+              
+              
+        frameCliente.btnInsertaCliente.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Cliente nuevoCliente = enviarCliente();
+                bd.insertNuevoCliente(nuevoCliente);
+            }
+            
+            
+        });
               
         frameVerRemitos.txtBuscarRemito.addKeyListener(new KeyAdapter (){
             
@@ -181,7 +215,36 @@ public class ControladorEvento {
         
     }
     
+    public Cliente enviarCliente(){
+        
+        
+        String nombreCliente = frameCliente.txtNombreCliente.getText();
+        String telCliente = frameCliente.txtTelCliente.getText();
+        String email = frameCliente.txtEmailCliente.getText();
+        boolean esInst=false;
+        
+        if(frameCliente.CheckTrue.isSelected()){
+            esInst = true;
+        }else{
+            esInst = false;
+            
+        }
+        
+        Cliente cliente = new Cliente(nombreCliente,telCliente,email,esInst);
+        
+        return cliente;
+        
+    }  
     
+    public Obra enviarObra(){
+        
+        String nuevaObra = frameObra.txtNuevaObra.getText();
+        
+        Obra obra = new Obra(nuevaObra);
+        
+        return obra;
+        
+    }
     
     public void cargarModeloTabla(){
         
@@ -192,6 +255,14 @@ public class ControladorEvento {
         modeloTablaRemitos.addColumn("Archivo");
     }
     
+    public void cargarModeloComboClientes(){
+        
+        ArrayList<Cliente> listaCliente = bd.selectClientes();
+        for(Cliente cl:listaCliente){
+            
+            frameRemito.ComboClientes.addItem(cl);
+        }
+    }
     
 }      
               

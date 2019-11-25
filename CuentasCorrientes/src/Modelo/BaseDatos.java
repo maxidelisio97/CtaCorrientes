@@ -6,6 +6,7 @@
 package Modelo;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class BaseDatos {
 
@@ -57,6 +58,93 @@ public class BaseDatos {
         }
 
         return rs;
+    }
+    
+    
+    public void insertNuevoCliente(Cliente nuevoCliente){
+        
+        Connection conn=null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        
+        
+        try{
+            
+            conn = miConexion.dameConexion();
+            
+            ps = conn.prepareStatement("INSERT INTO CLIENTE(NOM_CLIENTE,TEL_CLIENTE,EMAIL_CLIENTE,ES_INSTALADOR_CLIENTE_) VALUES(?,?,?,?)");
+            
+            ps.setString(1, nuevoCliente.getNombreCliente());
+            ps.setString(2, nuevoCliente.getTelCliente());
+            ps.setString(3, nuevoCliente.getEmail());
+            ps.setBoolean(4, nuevoCliente.isEsInstalador());
+            
+            ps.executeQuery();
+            
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public void insertNuevaObra(Obra nuevaObra){
+        
+        Connection conn=null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+        
+        
+        try{
+            
+            conn = miConexion.dameConexion();
+            
+            ps = conn.prepareStatement("INSERT INTO OBRA(NOM_OBRA) VALUES(?)");
+            
+            ps.setString(1, nuevaObra.getNombreObra());
+          
+            
+            ps.executeQuery();
+            
+            
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public ArrayList selectClientes(){
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        Statement st=null;
+        
+        ArrayList<Cliente> listaClientes = new ArrayList<>();
+        
+        try{
+            
+            conn = miConexion.dameConexion();
+            
+            st = conn.createStatement();
+            
+            rs = st.executeQuery("SELECT NOM_CLIENTE FROM CLIENTE");
+            
+            while(rs.next()){
+                
+                String nombre = rs.getString("NOM_CLIENTE");
+                
+                Cliente cliente = new Cliente(nombre);
+                
+                listaClientes.add(cliente);
+                
+            }
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listaClientes;
     }
     private Conexion miConexion;
 }

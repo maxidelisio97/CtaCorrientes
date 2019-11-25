@@ -38,18 +38,19 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        labelCorreo = new javax.swing.JTextField();
+        txtEmailCliente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
-        LabelTel = new javax.swing.JTextField();
+        txtTelCliente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        LabelCliente = new javax.swing.JTextField();
+        CheckTrue = new javax.swing.JCheckBox();
+        CheckFalse = new javax.swing.JCheckBox();
+        txtNombreCliente = new javax.swing.JTextField();
+        btnInsertaCliente = new javax.swing.JButton();
 
         jRadioButton1.setText("jRadioButton1");
 
@@ -86,12 +87,12 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 170, 10));
 
-        labelCorreo.setBackground(new java.awt.Color(51, 51, 51));
-        labelCorreo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        labelCorreo.setForeground(new java.awt.Color(204, 204, 204));
-        labelCorreo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        labelCorreo.setBorder(null);
-        jPanel1.add(labelCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 170, 24));
+        txtEmailCliente.setBackground(new java.awt.Color(51, 51, 51));
+        txtEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtEmailCliente.setForeground(new java.awt.Color(204, 204, 204));
+        txtEmailCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEmailCliente.setBorder(null);
+        jPanel1.add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 170, 24));
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
@@ -99,12 +100,12 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 70, -1));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 170, 10));
 
-        LabelTel.setBackground(new java.awt.Color(51, 51, 51));
-        LabelTel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LabelTel.setForeground(new java.awt.Color(204, 204, 204));
-        LabelTel.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        LabelTel.setBorder(null);
-        jPanel1.add(LabelTel, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 170, 30));
+        txtTelCliente.setBackground(new java.awt.Color(51, 51, 51));
+        txtTelCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtTelCliente.setForeground(new java.awt.Color(204, 204, 204));
+        txtTelCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTelCliente.setBorder(null);
+        jPanel1.add(txtTelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 170, 30));
 
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-back-arrow-50.png"))); // NOI18N
@@ -128,26 +129,31 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jLabel2.setText("Instalador :");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
 
-        jCheckBox1.setBackground(new java.awt.Color(51, 51, 51));
-        buttonGroup1.add(jCheckBox1);
-        jCheckBox1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("SI");
-        jPanel1.add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 40, 30));
+        CheckTrue.setBackground(new java.awt.Color(51, 51, 51));
+        buttonGroup1.add(CheckTrue);
+        CheckTrue.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        CheckTrue.setForeground(new java.awt.Color(255, 255, 255));
+        CheckTrue.setText("SI");
+        jPanel1.add(CheckTrue, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 40, 30));
 
-        jCheckBox2.setBackground(new java.awt.Color(51, 51, 51));
-        buttonGroup1.add(jCheckBox2);
-        jCheckBox2.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("NO");
-        jPanel1.add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, 30));
+        CheckFalse.setBackground(new java.awt.Color(51, 51, 51));
+        buttonGroup1.add(CheckFalse);
+        CheckFalse.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        CheckFalse.setForeground(new java.awt.Color(255, 255, 255));
+        CheckFalse.setText("NO");
+        jPanel1.add(CheckFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, 30));
 
-        LabelCliente.setBackground(new java.awt.Color(51, 51, 51));
-        LabelCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        LabelCliente.setForeground(new java.awt.Color(204, 204, 204));
-        LabelCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        LabelCliente.setBorder(null);
-        jPanel1.add(LabelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 170, 24));
+        txtNombreCliente.setBackground(new java.awt.Color(51, 51, 51));
+        txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtNombreCliente.setForeground(new java.awt.Color(204, 204, 204));
+        txtNombreCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtNombreCliente.setBorder(null);
+        jPanel1.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 170, 24));
+
+        btnInsertaCliente.setBackground(new java.awt.Color(51, 51, 51));
+        btnInsertaCliente.setForeground(new java.awt.Color(51, 255, 255));
+        btnInsertaCliente.setText("Insertar");
+        jPanel1.add(btnInsertaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 500, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,11 +175,10 @@ public class FrameCliente extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField LabelCliente;
-    private javax.swing.JTextField LabelTel;
+    public javax.swing.JCheckBox CheckFalse;
+    public javax.swing.JCheckBox CheckTrue;
+    public javax.swing.JButton btnInsertaCliente;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -190,6 +195,8 @@ public class FrameCliente extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField labelCorreo;
+    public javax.swing.JTextField txtEmailCliente;
+    public javax.swing.JTextField txtNombreCliente;
+    public javax.swing.JTextField txtTelCliente;
     // End of variables declaration//GEN-END:variables
 }

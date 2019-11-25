@@ -30,13 +30,13 @@ public class FrameObra extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtNuevaObra = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lblInsertarObra = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
 
         setBorder(null);
@@ -52,11 +52,11 @@ public class FrameObra extends javax.swing.JInternalFrame {
         jLabel1.setText("Obra:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 259, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField1.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField1.setText("Insertar...");
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 262, 353, 32));
+        txtNuevaObra.setBackground(new java.awt.Color(51, 51, 51));
+        txtNuevaObra.setForeground(new java.awt.Color(255, 255, 255));
+        txtNuevaObra.setText("Insertar...");
+        txtNuevaObra.setBorder(null);
+        jPanel1.add(txtNuevaObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 262, 353, 32));
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(75, 300, 66, 10));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -70,12 +70,12 @@ public class FrameObra extends javax.swing.JInternalFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_hire-me_59368.png"))); // NOI18N
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 6, -1, 43));
 
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_Paul-09_2624634.png"))); // NOI18N
-        jLabel4.setText("Insertar");
-        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 328, -1, -1));
+        lblInsertarObra.setForeground(new java.awt.Color(204, 204, 204));
+        lblInsertarObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_Paul-09_2624634.png"))); // NOI18N
+        lblInsertarObra.setText("Insertar");
+        lblInsertarObra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblInsertarObra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jPanel1.add(lblInsertarObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 328, -1, -1));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 552, 50, 12));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,12 +97,12 @@ public class FrameObra extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextField1;
+    public javax.swing.JLabel lblInsertarObra;
+    public javax.swing.JTextField txtNuevaObra;
     // End of variables declaration//GEN-END:variables
 }

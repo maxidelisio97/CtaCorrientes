@@ -14,11 +14,16 @@ public class Cliente {
     public Cliente(){
         
     }
+
+    public Cliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
     
     private int idCliente;
     private String nombreCliente;
     private String telCliente;
-
+       private String email;
+    private boolean esInstalador;
     public Cliente(int idCliente, String nombreCliente, String telCliente, String email, boolean esInstalador) {
         this.idCliente = idCliente;
         this.nombreCliente = nombreCliente;
@@ -26,8 +31,7 @@ public class Cliente {
         this.email = email;
         this.esInstalador = esInstalador;
     }
-    private String email;
-    private boolean esInstalador;
+ 
 
     public Cliente(String nombreCliente, String telCliente, String email, boolean esInstalador) {
         this.nombreCliente = nombreCliente;
@@ -74,6 +78,11 @@ public class Cliente {
 
     public void setEsInstalador(boolean esInstalador) {
         this.esInstalador = esInstalador;
+    }
+
+    @Override
+    public String toString() {
+        return nombreCliente;
     }
             
     
