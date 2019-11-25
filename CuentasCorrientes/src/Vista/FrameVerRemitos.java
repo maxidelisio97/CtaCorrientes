@@ -37,40 +37,47 @@ public class FrameVerRemitos extends javax.swing.JInternalFrame {
         radioObra = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaRemitos = new javax.swing.JTable();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 0, 0));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Microsoft YaHei Light", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Buscar:");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 40, 74, 34));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 70, 366, 13));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 74, 34));
 
-        txtBuscarRemito.setBackground(new java.awt.Color(0, 0, 0));
+        jSeparator1.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 120, 366, 13));
+
+        txtBuscarRemito.setBackground(new java.awt.Color(51, 51, 51));
         txtBuscarRemito.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         txtBuscarRemito.setForeground(new java.awt.Color(255, 255, 255));
         txtBuscarRemito.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtBuscarRemito.setBorder(null);
-        jPanel1.add(txtBuscarRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 40, 370, 30));
+        jPanel1.add(txtBuscarRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 90, 370, 30));
 
-        radioCliente.setBackground(new java.awt.Color(0, 0, 0));
+        radioCliente.setBackground(new java.awt.Color(51, 51, 51));
         buttonGroup1.add(radioCliente);
+        radioCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         radioCliente.setForeground(new java.awt.Color(255, 255, 255));
         radioCliente.setSelected(true);
         radioCliente.setText("Cliente");
-        jPanel1.add(radioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 40, 70, -1));
+        jPanel1.add(radioCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 80, 70, -1));
 
-        radioObra.setBackground(new java.awt.Color(0, 0, 0));
+        radioObra.setBackground(new java.awt.Color(51, 51, 51));
         buttonGroup1.add(radioObra);
+        radioObra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         radioObra.setForeground(new java.awt.Color(255, 255, 255));
         radioObra.setText("Obra");
-        jPanel1.add(radioObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 40, 80, -1));
+        jPanel1.add(radioObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, 80, -1));
 
         jScrollPane1.setForeground(new java.awt.Color(255, 255, 255));
 
+        tablaRemitos.setFont(new java.awt.Font("Decker", 0, 12)); // NOI18N
         tablaRemitos.setForeground(new java.awt.Color(0, 0, 0));
         tablaRemitos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,7 +92,12 @@ public class FrameVerRemitos extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tablaRemitos);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 110, 600, -1));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, 600, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator2.setForeground(new java.awt.Color(102, 102, 102));
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 10, 100));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,6 +120,7 @@ public class FrameVerRemitos extends javax.swing.JInternalFrame {
     public javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     public javax.swing.JRadioButton radioCliente;
     public javax.swing.JRadioButton radioObra;
     public javax.swing.JTable tablaRemitos;

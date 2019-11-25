@@ -43,6 +43,7 @@ public class FrameObra extends javax.swing.JInternalFrame {
         setTitle("Nueva Obra");
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setPreferredSize(new java.awt.Dimension(629, 419));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
