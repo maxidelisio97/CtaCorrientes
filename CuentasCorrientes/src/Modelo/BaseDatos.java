@@ -16,6 +16,9 @@ public class BaseDatos {
 
     }
 
+    
+    
+    
     public ResultSet dameCtaPorCliente(String nombreCliente) {
 
         Connection conn = null;
@@ -113,6 +116,29 @@ public class BaseDatos {
             e.printStackTrace();
         }
         
+    }
+    
+    public ArrayList selectObra(){
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        Statement st = null;
+        PreparedStatement ps = null;
+        
+         ArrayList<Obra> listaObra = new ArrayList<>();
+        
+         try{
+             
+             conn = miConexion.dameConexion();
+             
+             ps = conn.prepareStatement("SELECT * FROM dbcta.OBRA WHERE ID_CLIENTE = ?");
+             
+             rs = ps.executeQuery();
+             
+         }catch(Exception e){}
+        
+         
+         return listaObra;
     }
     
     public ArrayList selectClientes(){
