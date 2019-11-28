@@ -64,11 +64,6 @@ public class Principal extends javax.swing.JFrame {
         labelNuevoCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-contacts-50.png"))); // NOI18N
         labelNuevoCliente.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         labelNuevoCliente.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        labelNuevoCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                labelNuevoClienteMousePressed(evt);
-            }
-        });
         jPanel1.add(labelNuevoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 50, 70));
 
         labelCliente.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
@@ -120,7 +115,7 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGap(0, 653, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +129,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panel2Layout.createSequentialGroup()
                 .addComponent(panel1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         panel2Layout.setVerticalGroup(
@@ -160,11 +155,6 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void labelNuevoClienteMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelNuevoClienteMousePressed
-        
-        labelCliente.setForeground(Color.CYAN);
-    }//GEN-LAST:event_labelNuevoClienteMousePressed
 
     /**
      * @param args the command line arguments

@@ -118,7 +118,7 @@ public class BaseDatos {
         
     }
     
-    public ArrayList selectObra(){
+    public ArrayList selectObra(int criterio){
         
         Connection conn = null;
         ResultSet rs = null;
@@ -131,15 +131,29 @@ public class BaseDatos {
              
              conn = miConexion.dameConexion();
              
-             ps = conn.prepareStatement("SELECT * FROM dbcta.OBRA WHERE ID_CLIENTE = ?");
+             ps = conn.prepareStatement("SELECT NOM_OBRA FROM dbcta.OBRA WHERE ID_CLIENTE = ?");
+             
+             ps.setInt(1,criterio);
              
              rs = ps.executeQuery();
+             
+             while(rs.next()){
+                 
+                 String nombre = rs.getString("NOM_OBRA");
+                 
+                 Obra obra = new Obra(nombre);
+                 
+                 listaObra.add(obra);
+                 
+             }
              
          }catch(Exception e){}
         
          
          return listaObra;
     }
+    
+   
     
     public ArrayList selectClientes(){
         
@@ -172,5 +186,69 @@ public class BaseDatos {
         }
         return listaClientes;
     }
+    
+     public void insertRemito(Remito remito){
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps=null;
+        
+       
+        try{
+            
+            conn = miConexion.dameConexion();
+            
+            ps = conn.prepareStatement("INSERT INTO REMITO(NUM_REMITO,FECHA_REMITO,ID_OBRA,ID_CLIENTE,ARCHIVO) VALUES(?,?,?,?,?)");
+            
+            ps.setString(1, remito.getNumRemito());
+            ps.setDate(2, remito.getFechaRemito());
+            ps.setInt(3, remito.getIdObra());
+            ps.setInt(4, remito.getIdCliente());
+            ps.setString(5, remito.getRutaPdf());
+            
+            ps.executeQuery();
+            
+          
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+       
+    }
+    
+     
+      public ArrayList selectObreishon(){
+        
+        Connection conn = null;
+        ResultSet rs = null;
+        Statement st=null;
+        
+        ArrayList<Obra> listaobra = new ArrayList<>();
+        
+        try{
+            
+            conn = miConexion.dameConexion();
+            
+            st = conn.createStatement();
+            
+            rs = st.executeQuery("SELECT NOM_OBRA FROM OBRA");
+            
+            while(rs.next()){
+                  
+                String nombre = rs.getString("NOM_OBRA");
+                
+                Obra obra = new Obra(nombre);
+                
+                listaobra.add(obra);
+            }
+            
+        
+            
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return listaobra;
+    }
+    
+    
     private Conexion miConexion;
 }

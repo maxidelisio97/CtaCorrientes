@@ -42,7 +42,12 @@ public class Obra {
     public Obra(String nombreObra) {
         this.nombreObra = nombreObra;
     }
-    
+
+    @Override
+    public String toString() {
+        return    nombreObra;
+    }
+
     
     
 }

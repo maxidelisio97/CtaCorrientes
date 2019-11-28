@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.BaseDatos;
 import Modelo.Cliente;
+import Modelo.CrearCarpetaCliente;
 import Modelo.Obra;
 import Vista.FrameCliente;
 import Vista.FrameObra;
@@ -14,11 +15,14 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
 
 public class ControladorEvento {
@@ -32,6 +36,8 @@ public class ControladorEvento {
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
+    private final String rutaPrincipal="/home/ferc/Imagenes/remitos/";
+    private CrearCarpetaCliente CCC = new CrearCarpetaCliente();
 
     public ControladorEvento(Principal vista, BaseDatos bd, FrameVerRemitos frameVerRemitos, FrameCliente frameCliente, FrameObra frameObra,
                                                                                                                                                                                                             FrameRemito frameRemito) {
@@ -44,7 +50,8 @@ public class ControladorEvento {
         this.frameRemito = frameRemito;
         //frameVerRemitos = new FrameVerRemitos();
         cargarModeloTabla();
-        cargarModeloComboClientes();
+      cargarModeloCombocliente();
+        cargarModeloComboObra();
 
         this.vista.labelNuevaObra.addMouseListener(new MouseAdapter() {
 
@@ -104,6 +111,8 @@ public class ControladorEvento {
             }
 
         });
+        
+
         this.vista.lblVerRemitos.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
@@ -129,6 +138,28 @@ public class ControladorEvento {
             }
 
         });
+        
+        frameRemito.ComboClientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                modeloComboObra.removeAllElements();
+
+            ArrayList<Obra> listaObra=  bd.selectObra(frameRemito.ComboClientes.getSelectedIndex()+1);
+              
+              for(Obra c: listaObra){
+                  
+                  modeloComboObra.addElement(c);
+                  
+              }
+              
+              frameRemito.ComboObra.setModel(modeloComboObra);
+               
+              
+            }
+
+        });
+
 
         frameVerRemitos.txtBuscarRemito.addKeyListener(new KeyAdapter() {
 
@@ -236,24 +267,55 @@ public class ControladorEvento {
         modeloTablaRemitos.addColumn("Archivo");
     }
 
-    public void cargarModeloComboClientes() {
 
-        ArrayList<Cliente> listaCliente = bd.selectClientes();
-        for (Cliente cl : listaCliente) {
+    
+     private void cargarModeloCombocliente() {
+          ArrayList<Cliente> listaCliente = new ArrayList<>();
+        listaCliente = bd.selectClientes();
 
-            frameRemito.ComboClientes.addItem(cl);
+        for (Cliente c : listaCliente) {
+            modeloComboClientes.addElement(c);
+
         }
+    frameRemito.ComboClientes.setModel(modeloComboClientes);
     }
     
-    public void cargarModeloComboObra(){
-        
-          ArrayList<Obra> listaObra = bd.selectObra();
-        for (Obra ob : listaObra) {
+   
+    
+      private void cargarModeloComboObra() {
+        ArrayList<Obra> listaObra = new ArrayList<>();
+        listaObra = bd.selectObreishon();
 
-            frameRemito.ComboObra.addItem(ob);
+        for (Obra c : listaObra) {
+            modeloComboObra.addElement(c);
+
         }
+       frameRemito.ComboObra.setModel(modeloComboObra);
+    }
+    
+ 
+   //OBTIENE EL NOMBRE DEL ARCHIVO 
+    public String getNameFile(){
         
+       String ruta="";
+        
+        JFileChooser fc = new JFileChooser();
+        
+        int seleccion = fc.showOpenDialog(frameRemito);
+        
+        if(seleccion==JFileChooser.APPROVE_OPTION){
+            
+            File fichero = fc.getSelectedFile();
+            
+             ruta = fichero.getPath();
+             
+            System.out.println("ruta");
+            
+        }
+        return ruta;
         
     }
+    
+    
 
 }
