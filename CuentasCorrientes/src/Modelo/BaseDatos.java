@@ -179,6 +179,8 @@ public class BaseDatos {
                 
                 listaClientes.add(cliente);
                 
+                System.out.println("FALOPA");
+                
             }
             
         }catch(Exception e){
@@ -216,7 +218,7 @@ public class BaseDatos {
     }
     
      
-      public ArrayList selectObreishon(){
+      public ArrayList selectObra(){
         
         Connection conn = null;
         ResultSet rs = null;

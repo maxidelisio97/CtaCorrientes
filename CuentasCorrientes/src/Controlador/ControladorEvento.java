@@ -16,6 +16,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -36,8 +37,11 @@ public class ControladorEvento {
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
-    private final String rutaPrincipal="/home/ferc/Imagenes/remitos/";
-    private CrearCarpetaCliente CCC = new CrearCarpetaCliente();
+    private final String rutaPrincipal = "/home/ferc/Imagenes/remitos/";
+    private CrearCarpetaCliente createFile = null;
+    private Cliente cliente = null;
+    private Obra obra = null;
+    private String path = null;
 
     public ControladorEvento(Principal vista, BaseDatos bd, FrameVerRemitos frameVerRemitos, FrameCliente frameCliente, FrameObra frameObra,
                                                                                                                                                                                                             FrameRemito frameRemito) {
@@ -50,7 +54,7 @@ public class ControladorEvento {
         this.frameRemito = frameRemito;
         //frameVerRemitos = new FrameVerRemitos();
         cargarModeloTabla();
-      cargarModeloCombocliente();
+        cargarModeloCombocliente();
         cargarModeloComboObra();
 
         this.vista.labelNuevaObra.addMouseListener(new MouseAdapter() {
@@ -69,10 +73,10 @@ public class ControladorEvento {
 
         });
 
-        this.vista.labelNuevoRemito.addMouseListener(new MouseAdapter() {
+        this.vista.btnFrameRemitos.addActionListener(new ActionListener() {
 
-            public void mousePressed(MouseEvent e) {
-
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 if (!frameRemito.isVisible()) {
 
                     vista.escritorio.add(frameRemito);
@@ -81,6 +85,7 @@ public class ControladorEvento {
                 } else {
                     vista.escritorio.getDesktopManager().maximizeFrame(frameRemito);
                 }
+
             }
 
         });
@@ -111,7 +116,6 @@ public class ControladorEvento {
             }
 
         });
-        
 
         this.vista.lblVerRemitos.addMouseListener(new MouseAdapter() {
 
@@ -138,33 +142,47 @@ public class ControladorEvento {
             }
 
         });
-        
-        frameRemito.ComboClientes.addActionListener(new ActionListener() {
+
+        frameRemito.btnSubirRemito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                modeloComboObra.removeAllElements();
 
-            ArrayList<Obra> listaObra=  bd.selectObra(frameRemito.ComboClientes.getSelectedIndex()+1);
-              
-              for(Obra c: listaObra){
-                  
-                  modeloComboObra.addElement(c);
-                  
-              }
-              
-              frameRemito.ComboObra.setModel(modeloComboObra);
-               
-              
+                createFile = new CrearCarpetaCliente();
+                
+                String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
+                String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
+                //GUARDO LA RUTA DONDE CREE EL CLIENTE
+                createFile.crearCarpeta(rutaPrincipal + nombreCarpetaCliente , nombreCarpetaObra);
+                                                              
             }
 
         });
 
+        frameRemito.ComboClientes.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                modeloComboObra.removeAllElements();
+
+                ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex() + 1);
+
+                for (Obra c : listaObra) {
+
+                    modeloComboObra.addElement(c);
+
+                }
+
+                frameRemito.ComboObra.setModel(modeloComboObra);
+
+            }
+
+        });
 
         frameVerRemitos.txtBuscarRemito.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyPressed(KeyEvent e) {
+
                 limpiarTabla();
 
                 String criterio = frameVerRemitos.txtBuscarRemito.getText();
@@ -173,6 +191,7 @@ public class ControladorEvento {
 
                 frameVerRemitos.tablaRemitos.setModel(modeloTablaRemitos);
             }
+
         });
 
     }
@@ -267,55 +286,53 @@ public class ControladorEvento {
         modeloTablaRemitos.addColumn("Archivo");
     }
 
-
-    
-     private void cargarModeloCombocliente() {
-          ArrayList<Cliente> listaCliente = new ArrayList<>();
+    private void cargarModeloCombocliente() {
+        ArrayList<Cliente> listaCliente = new ArrayList<>();
         listaCliente = bd.selectClientes();
 
         for (Cliente c : listaCliente) {
             modeloComboClientes.addElement(c);
+            
+           
 
         }
-    frameRemito.ComboClientes.setModel(modeloComboClientes);
+        frameRemito.ComboClientes.setModel(modeloComboClientes);
     }
-    
-   
-    
-      private void cargarModeloComboObra() {
+
+    private void cargarModeloComboObra() {
         ArrayList<Obra> listaObra = new ArrayList<>();
-        listaObra = bd.selectObreishon();
+        listaObra = bd.selectObra();
 
         for (Obra c : listaObra) {
             modeloComboObra.addElement(c);
 
         }
-       frameRemito.ComboObra.setModel(modeloComboObra);
+        frameRemito.ComboObra.setModel(modeloComboObra);
     }
-    
- 
-   //OBTIENE EL NOMBRE DEL ARCHIVO 
-    public String getNameFile(){
-        
-       String ruta="";
-        
+
+  
+
+      
+
+    //OBTIENE EL NOMBRE DEL ARCHIVO 
+    public String getNameFile() {
+
         JFileChooser fc = new JFileChooser();
-        
+
         int seleccion = fc.showOpenDialog(frameRemito);
-        
-        if(seleccion==JFileChooser.APPROVE_OPTION){
-            
-            File fichero = fc.getSelectedFile();
-            
-             ruta = fichero.getPath();
-             
-            System.out.println("ruta");
-            
+
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+
+             fichero = fc.getSelectedFile();
+
+            path = fichero.getPath();
+
+            //System.out.println(path);
         }
-        return ruta;
-        
+        return path;
+
     }
     
-    
+    private File fichero;
 
 }

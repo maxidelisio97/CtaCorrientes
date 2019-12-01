@@ -41,10 +41,10 @@ public class Principal extends javax.swing.JFrame {
         labelCliente = new javax.swing.JLabel();
         labelNuevaObra = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        labelNuevoRemito = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         lblVerRemitos = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        btnFrameRemitos = new javax.swing.JButton();
         escritorio = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -84,12 +84,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setToolTipText("");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 110, 60));
 
-        labelNuevoRemito.setForeground(new java.awt.Color(255, 255, 255));
-        labelNuevoRemito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-document-50.png"))); // NOI18N
-        labelNuevoRemito.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        labelNuevoRemito.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(labelNuevoRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, 60));
-
         jLabel1.setFont(new java.awt.Font("Decker", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Subir remitos");
@@ -105,6 +99,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Ver Cta Corriente");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 160, 62));
+
+        btnFrameRemitos.setBackground(new java.awt.Color(255, 255, 255));
+        btnFrameRemitos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/negro/icons8-document-50.png"))); // NOI18N
+        btnFrameRemitos.setBorder(null);
+        btnFrameRemitos.setBorderPainted(false);
+        btnFrameRemitos.setContentAreaFilled(false);
+        btnFrameRemitos.setFocusPainted(false);
+        btnFrameRemitos.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/azul/icons8-document-50.png"))); // NOI18N
+        jPanel1.add(btnFrameRemitos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
         panel1.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, -1));
 
@@ -162,6 +165,7 @@ public class Principal extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnFrameRemitos;
     public javax.swing.JDesktopPane escritorio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -171,7 +175,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel labelCliente;
     public javax.swing.JLabel labelNuevaObra;
     public javax.swing.JLabel labelNuevoCliente;
-    public javax.swing.JLabel labelNuevoRemito;
     public javax.swing.JLabel lblVerRemitos;
     public java.awt.Panel panel1;
     public java.awt.Panel panel2;
