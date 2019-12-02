@@ -1,5 +1,5 @@
 
-package Vista;
+package VISTA;
 
 import Controlador.ControladorEvento;
 import Modelo.BaseDatos;

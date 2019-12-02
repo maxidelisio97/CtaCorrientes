@@ -4,11 +4,11 @@ import Modelo.BaseDatos;
 import Modelo.Cliente;
 import Modelo.CrearCarpetaCliente;
 import Modelo.Obra;
-import Vista.FrameCliente;
-import Vista.FrameObra;
-import Vista.FrameRemito;
-import Vista.FrameVerRemitos;
-import Vista.Principal;
+import VISTA.FrameCliente;
+import VISTA.FrameObra;
+import VISTA.FrameRemito;
+import VISTA.FrameVerRemitos;
+import VISTA.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
@@ -16,12 +16,10 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
-import java.nio.file.Path;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ComboBoxEditor;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
 import javax.swing.table.DefaultTableModel;
@@ -39,8 +37,7 @@ public class ControladorEvento {
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
     private final String rutaPrincipal = "/home/ferc/Imagenes/remitos/";
     private CrearCarpetaCliente createFile = null;
-    private Cliente cliente = null;
-    private Obra obra = null;
+ 
     private String path = null;
 
     public ControladorEvento(Principal vista, BaseDatos bd, FrameVerRemitos frameVerRemitos, FrameCliente frameCliente, FrameObra frameObra,
@@ -57,7 +54,36 @@ public class ControladorEvento {
         cargarModeloCombocliente();
         cargarModeloComboObra();
 
-        this.vista.labelNuevaObra.addMouseListener(new MouseAdapter() {
+    /*       vista.btnLamina.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int posicion = vista.panelMenu.getX();
+                if (posicion > -1) {
+                    Animacion.Animacion.mover_izquierda(0, -270, 2, 2, vista.panelMenu);
+
+                } else {
+                    Animacion.Animacion.mover_derecha(-270, 0, 2, 2, vista.panelMenu);
+                }
+            }
+
+        });*/
+        this.vista.btnVerRemito.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (!frameVerRemitos.isVisible()) {
+
+                    vista.escritorio.add(frameVerRemitos);
+                    vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
+                    frameVerRemitos.setVisible(true);
+                } else {
+                    vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
+                }
+            }
+
+        });
+
+        this.vista.btnLabelObra.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
 
@@ -73,10 +99,36 @@ public class ControladorEvento {
 
         });
 
-        this.vista.btnFrameRemitos.addActionListener(new ActionListener() {
+        this.vista.btnRemito1.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+
+               /* new CambiaPanel(vista.escritorio, vista.panelMenu);
+                if (vista.btnRemito1.isSelected()) {
+                    vista.btnObra.setColorNormal(new Color(214, 217, 223));
+                    vista.btnObra.setColorHover(new Color(204, 204, 204));
+                    vista.btnObra.setColorPressed(new Color(214, 217, 223));
+
+                    vista.btnRemito1.setColorNormal(new Color(204, 204, 204));
+                    vista.btnRemito1.setColorHover(new Color(204, 204, 204));
+                    vista.btnRemito1.setColorPressed(new Color(204, 204, 204));
+
+                    vista..setColorNormal(new Color(214, 217, 223));
+                    vista.labelNuevoCliente.setColorHover(new Color(204, 204, 204));
+                    vista.labelNuevoCliente.setColorPressed(new Color(214, 217, 223));
+
+                    this.btnVerRemito.setColorNormal(new Color(214, 217, 223));
+                    this.btnVerRemito.setColorHover(new Color(204, 204, 204));
+                    this.btnVerRemito.setColorPressed(new Color(214, 217, 223));
+
+                } else {
+                    this.btnRemito1.setColorNormal(new Color(214, 217, 223));
+                    this.btnRemito1.setColorHover(new Color(204, 204, 204));
+                    this.btnRemito1.setColorPressed(new Color(214, 217, 223));
+
+                }*/
+
                 if (!frameRemito.isVisible()) {
 
                     vista.escritorio.add(frameRemito);
@@ -90,7 +142,7 @@ public class ControladorEvento {
 
         });
 
-        this.vista.labelNuevoCliente.addMouseListener(new MouseAdapter() {
+        this.vista.btnLabelCliente.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
 
@@ -117,22 +169,6 @@ public class ControladorEvento {
 
         });
 
-        this.vista.lblVerRemitos.addMouseListener(new MouseAdapter() {
-
-            public void mousePressed(MouseEvent e) {
-
-                if (!frameVerRemitos.isVisible()) {
-
-                    vista.escritorio.add(frameVerRemitos);
-                    vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
-                    frameVerRemitos.setVisible(true);
-                } else {
-                    vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
-                }
-            }
-
-        });
-
         frameCliente.btnInsertaCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -148,12 +184,12 @@ public class ControladorEvento {
             public void actionPerformed(ActionEvent e) {
 
                 createFile = new CrearCarpetaCliente();
-                
+
                 String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
                 String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
                 //GUARDO LA RUTA DONDE CREE EL CLIENTE
-                createFile.crearCarpeta(rutaPrincipal + nombreCarpetaCliente , nombreCarpetaObra);
-                                                              
+                createFile.crearCarpeta(rutaPrincipal + nombreCarpetaCliente, nombreCarpetaObra);
+
             }
 
         });
@@ -292,8 +328,6 @@ public class ControladorEvento {
 
         for (Cliente c : listaCliente) {
             modeloComboClientes.addElement(c);
-            
-           
 
         }
         frameRemito.ComboClientes.setModel(modeloComboClientes);
@@ -310,10 +344,6 @@ public class ControladorEvento {
         frameRemito.ComboObra.setModel(modeloComboObra);
     }
 
-  
-
-      
-
     //OBTIENE EL NOMBRE DEL ARCHIVO 
     public String getNameFile() {
 
@@ -323,7 +353,7 @@ public class ControladorEvento {
 
         if (seleccion == JFileChooser.APPROVE_OPTION) {
 
-             fichero = fc.getSelectedFile();
+            fichero = fc.getSelectedFile();
 
             path = fichero.getPath();
 
@@ -332,7 +362,7 @@ public class ControladorEvento {
         return path;
 
     }
-    
+
     private File fichero;
 
 }
