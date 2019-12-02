@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package VISTA;
 
 import Modelo.Cliente;
 import Modelo.Obra;
@@ -218,6 +218,6 @@ public class FrameRemito extends javax.swing.JInternalFrame {
     public javax.swing.JTextField txtDirRemito;
     public javax.swing.JTextField txtFechaRemito;
     public javax.swing.JTextField txtNumRemito;
-    private javax.swing.JLabel webPane;
+    public javax.swing.JLabel webPane;
     // End of variables declaration//GEN-END:variables
 }

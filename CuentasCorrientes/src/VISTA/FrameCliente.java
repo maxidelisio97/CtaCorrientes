@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Vista;
+package VISTA;
 
 /**
  *
@@ -35,14 +35,12 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         txtEmailCliente = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         txtTelCliente = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -56,122 +54,105 @@ public class FrameCliente extends javax.swing.JInternalFrame {
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setBackground(new java.awt.Color(153, 204, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 2, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setText("Nuevo cliente");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, -1, -1));
 
+        jLabel3.setBackground(new java.awt.Color(153, 204, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Cliente :");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 80, 39));
-        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 170, 10));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 140, 80, 39));
 
-        jTextField1.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setBorder(null);
-        jTextField1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 160, 26));
+        jSeparator2.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 170, 10));
 
+        jLabel4.setBackground(new java.awt.Color(153, 204, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Tel :");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 240, -1, -1));
-        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 170, 10));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
 
-        txtEmailCliente.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator4.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 170, 10));
+
         txtEmailCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtEmailCliente.setForeground(new java.awt.Color(204, 204, 204));
         txtEmailCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtEmailCliente.setBorder(null);
-        jPanel1.add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 170, 24));
+        jPanel1.add(txtEmailCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 250, 170, 24));
 
+        jLabel5.setBackground(new java.awt.Color(153, 204, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("E-mail :");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 300, 70, -1));
-        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 170, 10));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 70, -1));
 
-        txtTelCliente.setBackground(new java.awt.Color(51, 51, 51));
+        jSeparator5.setBackground(new java.awt.Color(153, 204, 255));
+        jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 280, 170, 10));
+
         txtTelCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtTelCliente.setForeground(new java.awt.Color(204, 204, 204));
         txtTelCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtTelCliente.setBorder(null);
-        jPanel1.add(txtTelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 170, 30));
-
-        jLabel6.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-back-arrow-50.png"))); // NOI18N
-        jLabel6.setText("Insertar");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel6.setVerifyInputWhenFocusTarget(false);
-        jLabel6.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 470, -1, -1));
+        jPanel1.add(txtTelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 170, 30));
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-admin-settings-male-50.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-iphone-50.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 230, -1, -1));
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, -1));
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-send-email-50-2.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, -1, -1));
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
 
+        jLabel2.setBackground(new java.awt.Color(153, 204, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Instalador :");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 360, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
-        CheckTrue.setBackground(new java.awt.Color(51, 51, 51));
+        CheckTrue.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(CheckTrue);
         CheckTrue.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        CheckTrue.setForeground(new java.awt.Color(255, 255, 255));
         CheckTrue.setText("SI");
-        jPanel1.add(CheckTrue, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, 40, 30));
+        jPanel1.add(CheckTrue, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 40, 30));
 
-        CheckFalse.setBackground(new java.awt.Color(51, 51, 51));
+        CheckFalse.setBackground(new java.awt.Color(255, 255, 255));
         buttonGroup1.add(CheckFalse);
         CheckFalse.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        CheckFalse.setForeground(new java.awt.Color(255, 255, 255));
         CheckFalse.setText("NO");
-        jPanel1.add(CheckFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 360, -1, 30));
+        jPanel1.add(CheckFalse, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 320, -1, 30));
 
-        txtNombreCliente.setBackground(new java.awt.Color(51, 51, 51));
         txtNombreCliente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        txtNombreCliente.setForeground(new java.awt.Color(204, 204, 204));
         txtNombreCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtNombreCliente.setBorder(null);
-        jPanel1.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 170, 24));
+        jPanel1.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 170, 30));
 
-        btnInsertaCliente.setBackground(new java.awt.Color(51, 51, 51));
-        btnInsertaCliente.setForeground(new java.awt.Color(51, 255, 255));
-        btnInsertaCliente.setText("Insertar");
-        jPanel1.add(btnInsertaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(337, 500, 130, -1));
+        btnInsertaCliente.setBackground(new java.awt.Color(255, 255, 255));
+        btnInsertaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/arrow_right.png"))); // NOI18N
+        btnInsertaCliente.setText("Añadir");
+        btnInsertaCliente.setBorder(null);
+        btnInsertaCliente.setContentAreaFilled(false);
+        btnInsertaCliente.setFocusPainted(false);
+        btnInsertaCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/auto_correct.png"))); // NOI18N
+        btnInsertaCliente.setRequestFocusEnabled(false);
+        btnInsertaCliente.setRolloverEnabled(false);
+        jPanel1.add(btnInsertaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 557, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 517, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -184,7 +165,6 @@ public class FrameCliente extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -194,7 +174,6 @@ public class FrameCliente extends javax.swing.JInternalFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
     public javax.swing.JTextField txtEmailCliente;
     public javax.swing.JTextField txtNombreCliente;
     public javax.swing.JTextField txtTelCliente;
