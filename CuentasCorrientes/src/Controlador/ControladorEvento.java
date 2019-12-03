@@ -2,6 +2,7 @@ package Controlador;
 
 import Modelo.BaseDatos;
 import Modelo.Cliente;
+import Modelo.CopiarFicheros;
 import Modelo.CrearCarpetaCliente;
 import Modelo.Obra;
 import VISTA.FrameCliente;
@@ -179,17 +180,30 @@ public class ControladorEvento {
 
         });
 
-        frameRemito.btnSubirRemito.addActionListener(new ActionListener() {
+        this.frameRemito.btnSubirRemito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
                 createFile = new CrearCarpetaCliente();
-
+                File remito = getFile(); 
+                
+                System.out.println(remito);
+                
                 String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
                 String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
+                String pathRemito = remito.getAbsolutePath();
+               
                 //GUARDO LA RUTA DONDE CREE EL CLIENTE
-                createFile.crearCarpeta(rutaPrincipal + nombreCarpetaCliente, nombreCarpetaObra);
-
+                
+               File rutaDestinoRemito =  createFile.crearCarpeta(rutaPrincipal + nombreCarpetaCliente, nombreCarpetaObra);
+                
+                
+               //createFile.moveFile(pathRemito, "/home/ferc/Imagenes/remitos/remito1.pdf");
+               
+                createFile.moveFile(pathRemito, rutaDestinoRemito.getAbsolutePath());
+                
+                
+                //new CopiarFicheros(pathRemito, "/home/ferc/Imagenes/remitos/remito1.pdf");
             }
 
         });
@@ -345,7 +359,7 @@ public class ControladorEvento {
     }
 
     //OBTIENE EL NOMBRE DEL ARCHIVO 
-    public String getNameFile() {
+    public File getFile() {
 
         JFileChooser fc = new JFileChooser();
 
@@ -355,11 +369,11 @@ public class ControladorEvento {
 
             fichero = fc.getSelectedFile();
 
-            path = fichero.getPath();
+           
 
             //System.out.println(path);
         }
-        return path;
+        return fichero;
 
     }
 

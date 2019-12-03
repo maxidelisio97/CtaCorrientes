@@ -19,13 +19,13 @@ public class FrameRemito extends javax.swing.JInternalFrame {
 
   
     
-    JWebBrowser navergador = new JWebBrowser();
+  //  JWebBrowser navergador = new JWebBrowser();
     
     public FrameRemito() {
         initComponents();
-        this.webPane.setLayout(new BorderLayout());
-        navergador.navigate("");
-        this.webPane.add(navergador);
+        //this.webPane.setLayout(new BorderLayout());
+        //navergador.navigate("");
+        //this.webPane.add(navergador,BorderLayout.CENTER);
         
       
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);

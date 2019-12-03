@@ -199,9 +199,9 @@ public class Principal extends javax.swing.JFrame {
     private void btnLaminaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaminaActionPerformed
          int posicion = this.panelMenu.getX();
         if(posicion > -1 ){
-            Animacion.Animacion.mover_izquierda(0, -270, 1, 1, panelMenu);
+            Animacion.Animacion.mover_izquierda(0, -270, 2, 2, panelMenu);
         }else{
-            Animacion.Animacion.mover_derecha(-270, 0, 1, 1, panelMenu);
+            Animacion.Animacion.mover_derecha(-270, 0, 2, 2, panelMenu);
         }
     }//GEN-LAST:event_btnLaminaActionPerformed
 

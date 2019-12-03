@@ -29,13 +29,13 @@ public class main {
        
        ControladorEvento controlador = new ControladorEvento(vista,bd,frameVerRemitos,frameCliente                                                                                   ,frameObra,frameRemito);
        
-        SwingUtilities.invokeLater(new Runnable(){
+      /*  SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run() {
                  NativeInterface.open();
             }
         
-        });
+        });*/
        
       
                                                                                                                                                                                                       

@@ -179,7 +179,7 @@ public class BaseDatos {
                 
                 listaClientes.add(cliente);
                 
-                System.out.println("FALOPA");
+                
                 
             }
             
