@@ -13,55 +13,45 @@ public class CrearCarpetaCliente {
     public CrearCarpetaCliente() {
     }
 
-    public File crearCarpeta( String setNameCarpetaCliente, String setNameCarpetaObra) {
+    public void crearCarpeta(String setNameCarpetaCliente, String setNameCarpetaObra) {
 
-        
-        
-        rutaDirectorioCreado = new File(setNameCarpetaCliente,setNameCarpetaObra);
-        
-        if(!rutaDirectorioCreado.exists()){
-              rutaDirectorioCreado.mkdirs();
-              
+        rutaDirectorioCreado = new File(setNameCarpetaCliente, setNameCarpetaObra);
+
+        if (!rutaDirectorioCreado.exists()) {
+            rutaDirectorioCreado.mkdirs();
+
         }
-        
-      
-        return rutaDirectorioCreado;
 
     }
-    
-    
 
     public void moveFile(String urlOrigen, String urlDestino) {
 
         origenPath = FileSystems.getDefault().getPath(urlOrigen);
-        
-        System.out.println("ruta de origen " + origenPath);
 
         destinoPath = FileSystems.getDefault().getPath(urlDestino);
-        
-        System.out.println("ruta de destino" + destinoPath);
 
         try {
             Files.move(origenPath, destinoPath, StandardCopyOption.REPLACE_EXISTING);
-            
+
         } catch (IOException e) {
             System.err.println(e);
         }
 
     }
+
     //RENOMBRAR UN ARCHIVO
-    public void renameFile(String fichero1, String fichero2){
+    public void renameFile(String fichero1, String fichero2) {
+
+        File remito1 = new File(fichero1);
+
+        File remito2 = new File(fichero2);
+
+        boolean success = remito1.renameTo(remito2);
         
-           File remito1 = new File(fichero1);
- 
-            File remito2 = new File(fichero2);
- 
-            boolean success = remito1.renameTo(remito2);
-            if (!success) {
-                System.out.println("Error intentando cambiar el nombre de fichero");
-            }
-    
-        
+        if (!success) {
+            System.out.println("Error intentando cambiar el nombre de fichero");
+        }
+
     }
 
     private File nombreObra;

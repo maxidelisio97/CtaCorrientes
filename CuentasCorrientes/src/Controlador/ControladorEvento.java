@@ -17,12 +17,16 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class ControladorEvento {
@@ -36,9 +40,9 @@ public class ControladorEvento {
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
-    private final String rutaPrincipal = "/home/ferc/Imagenes/remitos/";
-    private CrearCarpetaCliente createFile = null;
- 
+    private final String rutaPrincipal = "/home/ferc/Imagenes/remitos";
+    private CrearCarpetaCliente createFile;
+
     private String path = null;
 
     public ControladorEvento(Principal vista, BaseDatos bd, FrameVerRemitos frameVerRemitos, FrameCliente frameCliente, FrameObra frameObra,
@@ -55,7 +59,7 @@ public class ControladorEvento {
         cargarModeloCombocliente();
         cargarModeloComboObra();
 
-    /*       vista.btnLamina.addActionListener(new ActionListener() {
+        /*       vista.btnLamina.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -84,6 +88,25 @@ public class ControladorEvento {
 
         });
 
+        this.frameRemito.btnGuardar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                /*String numRemito = frameRemito.txtNumRemito.getText();
+                String fecha = frameRemito.txtFechaRemito.getText();
+
+                File remito = getFile();
+                
+                String rutaPrimera = remito.getAbsolutePath();
+                //String rutaSegunda = remito.getAbsolutePath() 
+                
+                //createFile.renameFile(rutaPrimera, fecha);
+                
+                System.out.println(rutaPrimera);*/
+            }
+
+        });
+
         this.vista.btnLabelObra.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
@@ -105,7 +128,7 @@ public class ControladorEvento {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-               /* new CambiaPanel(vista.escritorio, vista.panelMenu);
+                /* new CambiaPanel(vista.escritorio, vista.panelMenu);
                 if (vista.btnRemito1.isSelected()) {
                     vista.btnObra.setColorNormal(new Color(214, 217, 223));
                     vista.btnObra.setColorHover(new Color(204, 204, 204));
@@ -129,7 +152,6 @@ public class ControladorEvento {
                     this.btnRemito1.setColorPressed(new Color(214, 217, 223));
 
                 }*/
-
                 if (!frameRemito.isVisible()) {
 
                     vista.escritorio.add(frameRemito);
@@ -185,25 +207,29 @@ public class ControladorEvento {
             public void actionPerformed(ActionEvent e) {
 
                 createFile = new CrearCarpetaCliente();
-                File remito = getFile(); 
-                
-                System.out.println(remito);
-                
+                File remito = getFile();
+                String nombreRemito = remito.getName();
                 String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
                 String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
                 String pathRemito = remito.getAbsolutePath();
+                String numRemito = frameRemito.txtNumRemito.getText();
+                String fechaRemito = frameRemito.txtFechaRemito.getText();
+
                
-                //GUARDO LA RUTA DONDE CREE EL CLIENTE
+                createFile.crearCarpeta(rutaPrincipal, nombreCarpetaCliente + "/" + nombreCarpetaObra);
+                String rutaDestino = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito;
+
+                createFile.moveFile(pathRemito, rutaDestino);
+              
+                if(numRemito!=null || fechaRemito!=null){
                 
-               File rutaDestinoRemito =  createFile.crearCarpeta(rutaPrincipal + nombreCarpetaCliente, nombreCarpetaObra);
+                String path = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " "+ fechaRemito;
+
+                createFile.renameFile(pathRemito, path);
                 
-                
-               //createFile.moveFile(pathRemito, "/home/ferc/Imagenes/remitos/remito1.pdf");
-               
-                createFile.moveFile(pathRemito, rutaDestinoRemito.getAbsolutePath());
-                
-                
-                //new CopiarFicheros(pathRemito, "/home/ferc/Imagenes/remitos/remito1.pdf");
+                }
+
+
             }
 
         });
@@ -369,9 +395,9 @@ public class ControladorEvento {
 
             fichero = fc.getSelectedFile();
 
-           
-
             //System.out.println(path);
+        } else {
+            System.out.println("NO A ELEGIDO NADA");
         }
         return fichero;
 

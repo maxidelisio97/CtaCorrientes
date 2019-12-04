@@ -59,7 +59,6 @@ public class FrameRemito extends javax.swing.JInternalFrame {
 
         setBorder(null);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(629, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -68,7 +67,6 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         ComboObra.setLightWeightPopupEnabled(false);
         jPanel1.add(ComboObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 170, -1));
 
-        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 204, 255));
         jLabel1.setText("Num.R");
@@ -80,7 +78,6 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         txtNumRemito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(txtNumRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 10, 170, 30));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 204, 255));
         jLabel3.setText("Fecha");
@@ -92,19 +89,16 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         txtFechaRemito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel1.add(txtFechaRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 170, 30));
 
-        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(102, 204, 255));
         jLabel4.setText("Obra");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, 50, -1));
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(102, 204, 255));
         jLabel5.setText("Dirección");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(102, 204, 255));
         jLabel6.setText("Cliente");
@@ -128,19 +122,17 @@ public class FrameRemito extends javax.swing.JInternalFrame {
 
         laminaRemito.setBackground(new java.awt.Color(102, 102, 102));
 
-        webPane.setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout laminaRemitoLayout = new javax.swing.GroupLayout(laminaRemito);
         laminaRemito.setLayout(laminaRemitoLayout);
         laminaRemitoLayout.setHorizontalGroup(
             laminaRemitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(webPane, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+            .addComponent(webPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         laminaRemitoLayout.setVerticalGroup(
             laminaRemitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(laminaRemitoLayout.createSequentialGroup()
                 .addComponent(webPane, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(laminaRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 610, 400));
@@ -155,7 +147,7 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         btnGuardar.setFocusTraversalPolicyProvider(true);
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/add1.png"))); // NOI18N
         btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/add1.png"))); // NOI18N
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 60, 40));
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 40));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/user.png"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
