@@ -48,6 +48,7 @@ public class Principal extends javax.swing.JFrame {
         setBackground(new java.awt.Color(51, 51, 51));
 
         panelBack.setBackground(new java.awt.Color(255, 255, 255));
+        panelBack.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         escritorio.setPreferredSize(new java.awt.Dimension(640, 410));
 
@@ -55,12 +56,14 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 680, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 520, Short.MAX_VALUE)
         );
+
+        panelBack.add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 59, 680, 520));
 
         panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -130,8 +133,9 @@ public class Principal extends javax.swing.JFrame {
         btnLabelCliente.setIconTextGap(25);
         panelMenu.add(btnLabelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 250, 40));
 
+        panelBack.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 59, -1, 520));
+
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
-        jPanel1.setBorder(null);
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnLamina.setBackground(new java.awt.Color(51, 51, 51));
@@ -144,30 +148,9 @@ public class Principal extends javax.swing.JFrame {
                 btnLaminaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 60, 50));
+        jPanel1.add(btnLamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 40));
 
-        javax.swing.GroupLayout panelBackLayout = new javax.swing.GroupLayout(panelBack);
-        panelBack.setLayout(panelBackLayout);
-        panelBackLayout.setHorizontalGroup(
-            panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBackLayout.createSequentialGroup()
-                .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(panelBackLayout.createSequentialGroup()
-                        .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(escritorio, javax.swing.GroupLayout.PREFERRED_SIZE, 634, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        panelBackLayout.setVerticalGroup(
-            panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBackLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelMenu, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)
-                    .addComponent(escritorio, javax.swing.GroupLayout.DEFAULT_SIZE, 514, Short.MAX_VALUE)))
-        );
+        panelBack.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 941, 58));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

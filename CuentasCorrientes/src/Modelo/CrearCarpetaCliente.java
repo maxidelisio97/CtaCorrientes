@@ -49,8 +49,11 @@ public class CrearCarpetaCliente {
         boolean success = remito1.renameTo(remito2);
         
         if (!success) {
-            System.out.println("Error intentando cambiar el nombre de fichero");
+            System.out.println("No se ha cambiado el nombre");
+        }else{
+            System.out.println("Se ha modificado el nombre");
         }
+                
 
     }
 

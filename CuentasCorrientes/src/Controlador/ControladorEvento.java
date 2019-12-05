@@ -10,14 +10,18 @@ import VISTA.FrameObra;
 import VISTA.FrameRemito;
 import VISTA.FrameVerRemitos;
 import VISTA.Principal;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
@@ -25,7 +29,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,8 +47,9 @@ public class ControladorEvento {
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
-    private final String rutaPrincipal = "/home/ferc/Imagenes/remitos";
+    private final String rutaPrincipal = "C:\\Users\\maxid\\remitos\\";
     private CrearCarpetaCliente createFile;
+    String rutaRemito="";
 
     private String path = null;
 
@@ -54,7 +62,7 @@ public class ControladorEvento {
         this.frameCliente = frameCliente;
         this.frameObra = frameObra;
         this.frameRemito = frameRemito;
-        //frameVerRemitos = new FrameVerRemitos();
+      
         cargarModeloTabla();
         cargarModeloCombocliente();
         cargarModeloComboObra();
@@ -73,6 +81,14 @@ public class ControladorEvento {
             }
 
         });*/
+        
+        this.frameVerRemitos.tablaRemitos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaGastosMouseClicked(evt);
+            }
+        });
+        
+        
         this.vista.btnVerRemito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -92,17 +108,7 @@ public class ControladorEvento {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                /*String numRemito = frameRemito.txtNumRemito.getText();
-                String fecha = frameRemito.txtFechaRemito.getText();
-
-                File remito = getFile();
                 
-                String rutaPrimera = remito.getAbsolutePath();
-                //String rutaSegunda = remito.getAbsolutePath() 
-                
-                //createFile.renameFile(rutaPrimera, fecha);
-                
-                System.out.println(rutaPrimera);*/
             }
 
         });
@@ -110,6 +116,7 @@ public class ControladorEvento {
         this.vista.btnLabelObra.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
+                  
 
                 if (!frameObra.isVisible()) {
 
@@ -216,14 +223,14 @@ public class ControladorEvento {
                 String fechaRemito = frameRemito.txtFechaRemito.getText();
 
                
-                createFile.crearCarpeta(rutaPrincipal, nombreCarpetaCliente + "/" + nombreCarpetaObra);
-                String rutaDestino = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito;
+                createFile.crearCarpeta(rutaPrincipal, nombreCarpetaCliente + "\\" + nombreCarpetaObra);
+                String rutaDestino = rutaPrincipal + "\\" + nombreCarpetaCliente + "\\" + nombreCarpetaObra + "\\" + nombreRemito;
 
                 createFile.moveFile(pathRemito, rutaDestino);
               
                 if(numRemito!=null || fechaRemito!=null){
                 
-                String path = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " "+ fechaRemito;
+                String path = rutaPrincipal + "\\" + nombreCarpetaCliente + "\\" + nombreCarpetaObra + "\\" + numRemito + " "+ fechaRemito;
 
                 createFile.renameFile(pathRemito, path);
                 
@@ -240,15 +247,17 @@ public class ControladorEvento {
 
                 modeloComboObra.removeAllElements();
 
-                ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex() + 1);
+               ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex()+14);
 
                 for (Obra c : listaObra) {
 
-                    modeloComboObra.addElement(c);
+                    modeloComboObra.addElement(c);  
 
                 }
 
-                frameRemito.ComboObra.setModel(modeloComboObra);
+                frameRemito.ComboObra.setModel(modeloComboObra); 
+              
+                
 
             }
 
@@ -275,6 +284,7 @@ public class ControladorEvento {
     public void recibeCTAPorCriterio(String criterio) {
 
         ResultSet rs = null;
+        
 
         if (frameVerRemitos.radioCliente.isSelected()) {
 
@@ -290,7 +300,7 @@ public class ControladorEvento {
 
             while (rs.next()) {
 
-                Object fila[] = new Object[numColumnas];
+                Object fila[] = new Object[numColumnas +1];
 
                 for (int i = 0; i < numColumnas; i++) {
 
@@ -298,7 +308,8 @@ public class ControladorEvento {
                     fila[1] = rs.getObject(2);
                     fila[2] = rs.getObject(3);
                     fila[3] = rs.getObject(4);
-                    fila[4] = rs.getObject(5);
+                    fila[4] =this.frameVerRemitos.btnVerFactura;
+                  
 
                 }
 
@@ -354,7 +365,8 @@ public class ControladorEvento {
     }
 
     public void cargarModeloTabla() {
-
+        
+      //   modeloTablaRemitos.addColumn("Id");
         modeloTablaRemitos.addColumn("Nombre cliente");
         modeloTablaRemitos.addColumn("Nombre obra");
         modeloTablaRemitos.addColumn("Instalador");
@@ -400,6 +412,61 @@ public class ControladorEvento {
             System.out.println("NO A ELEGIDO NADA");
         }
         return fichero;
+
+    }
+    
+     public void verRemito(String numRemito) {
+
+        ImageIcon ImagenGasto = null;
+          
+        
+        byte[] b = null;
+
+        try {
+            
+            ResultSet rs = bd.getRemito(numRemito);
+            
+            while(rs.next()){
+                
+                 rutaRemito = rs.getString("RUTA_ARCHIVO");
+            }
+
+          
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+        
+    }
+    
+     private void tablaGastosMouseClicked(java.awt.event.MouseEvent evt) {
+        int rown = this.frameVerRemitos.tablaRemitos.rowAtPoint(evt.getPoint());
+        int column = this.frameVerRemitos.tablaRemitos.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY() / this.frameVerRemitos.tablaRemitos.getRowHeight();
+
+        if (row < this.frameVerRemitos.tablaRemitos.getRowCount() && row >= 0 && column < this.frameVerRemitos.tablaRemitos.getColumnCount() && column >= 0) {
+            Object value =this.frameVerRemitos.tablaRemitos.getValueAt(row, column);
+
+            if (value instanceof JButton) {
+
+                ((JButton) value).doClick();
+                JButton boton = (JButton) value;
+
+                if (boton.getName().equals("v")) { 
+
+                   String numRemito =(String) this.frameVerRemitos.tablaRemitos.getValueAt(rown, 3);
+                   
+                    verRemito(numRemito);
+           
+                    try {
+                        Desktop.getDesktop().open(new File(rutaRemito));
+                    } catch (IOException ex) {
+                        Logger.getLogger(ControladorEvento.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+            }
+        }
 
     }
 

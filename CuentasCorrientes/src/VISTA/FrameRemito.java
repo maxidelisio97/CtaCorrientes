@@ -7,9 +7,7 @@ package VISTA;
 
 import Modelo.Cliente;
 import Modelo.Obra;
-import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import java.awt.BorderLayout;
-import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 
 
 
@@ -131,56 +129,53 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         laminaRemitoLayout.setVerticalGroup(
             laminaRemitoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(laminaRemitoLayout.createSequentialGroup()
-                .addComponent(webPane, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(webPane, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel1.add(laminaRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 610, 400));
 
         btnGuardar.setBackground(new java.awt.Color(255, 255, 255));
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/addgris.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/addgris.png"))); // NOI18N
         btnGuardar.setBorder(null);
         btnGuardar.setBorderPainted(false);
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setFocusPainted(false);
         btnGuardar.setFocusTraversalPolicyProvider(true);
-        btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/add1.png"))); // NOI18N
-        btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/add1.png"))); // NOI18N
-        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 60, 60, 40));
+        btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/add1.png"))); // NOI18N
+        btnGuardar.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/add1.png"))); // NOI18N
+        jPanel1.add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 80, 60, 40));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/user.png"))); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/user.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 30, 30));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/papers.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 30));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/papers.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 30, 30));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/location.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/location.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 20, 30));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/calendar_month.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/calendar_month.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 30, 30));
 
-        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/construction_worker.png"))); // NOI18N
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, -1, -1));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/construction_worker.png"))); // NOI18N
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 30, 30));
 
-        btnSubirRemito.setBackground(new java.awt.Color(255, 255, 255));
-        btnSubirRemito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/arrow_upblack.png"))); // NOI18N
+        btnSubirRemito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/arrow_upblack.png"))); // NOI18N
         btnSubirRemito.setBorder(null);
         btnSubirRemito.setBorderPainted(false);
         btnSubirRemito.setContentAreaFilled(false);
         btnSubirRemito.setFocusPainted(false);
         btnSubirRemito.setOpaque(true);
-        btnSubirRemito.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/arrow_up.png"))); // NOI18N
+        btnSubirRemito.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/arrow_up.png"))); // NOI18N
         jPanel1.add(btnSubirRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 10, 60, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 641, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

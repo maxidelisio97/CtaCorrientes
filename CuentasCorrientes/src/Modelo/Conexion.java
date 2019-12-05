@@ -22,7 +22,7 @@ public class Conexion {
         
         Connection conn=null;
         try {
-             conn = DriverManager.getConnection("jdbc:mariadb://localhost:3306/dbcta","root","4435");
+             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbcta?serverTimezone=UTC","root","");
             
         } catch (SQLException ex) {
             ex.printStackTrace();

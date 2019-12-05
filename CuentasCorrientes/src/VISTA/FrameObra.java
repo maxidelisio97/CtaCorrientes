@@ -35,7 +35,6 @@ public class FrameObra extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
-        jLabel3 = new javax.swing.JLabel();
         lblInsertarObra = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
 
@@ -67,15 +66,12 @@ public class FrameObra extends javax.swing.JInternalFrame {
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 55, 150, 10));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 300, 362, 10));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_hire-me_59368.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(419, 6, -1, 43));
-
         lblInsertarObra.setForeground(new java.awt.Color(204, 204, 204));
-        lblInsertarObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconfinder_Paul-09_2624634.png"))); // NOI18N
+        lblInsertarObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/azul/icons8-external-link-50.png"))); // NOI18N
         lblInsertarObra.setText("Insertar");
         lblInsertarObra.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblInsertarObra.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jPanel1.add(lblInsertarObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 328, -1, -1));
+        jPanel1.add(lblInsertarObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 328, 70, 70));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(289, 552, 50, 12));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -96,7 +92,6 @@ public class FrameObra extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

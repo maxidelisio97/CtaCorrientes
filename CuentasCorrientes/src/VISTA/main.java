@@ -3,8 +3,7 @@ package VISTA;
 
 import Controlador.ControladorEvento;
 import Modelo.BaseDatos;
-import chrriis.dj.nativeswing.swtimpl.*;
-import chrriis.dj.nativeswing.swtimpl.components.DefaultWebBrowserDecorator;;
+;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -27,7 +26,7 @@ public class main {
         
        vista.setVisible(true);
        
-       ControladorEvento controlador = new ControladorEvento(vista,bd,frameVerRemitos,frameCliente                                                                                   ,frameObra,frameRemito);
+       ControladorEvento controlador = new ControladorEvento(vista,bd,frameVerRemitos,frameCliente,frameObra,frameRemito);
        
       /*  SwingUtilities.invokeLater(new Runnable(){
             @Override

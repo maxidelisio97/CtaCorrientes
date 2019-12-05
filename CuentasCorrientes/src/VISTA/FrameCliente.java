@@ -96,14 +96,14 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         txtTelCliente.setBorder(null);
         jPanel1.add(txtTelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 170, 30));
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-admin-settings-male-50.png"))); // NOI18N
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cyan/icons8-admin-settings-male-50.png"))); // NOI18N
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 50, 50));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-iphone-50.png"))); // NOI18N
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, -1, -1));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cyan/icons8-iphone-50.png"))); // NOI18N
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 50, 50));
 
-        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cyan/icons8-send-email-50-2.png"))); // NOI18N
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cyan/icons8-send-email-50-2.png"))); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, 50, 50));
 
         jLabel2.setBackground(new java.awt.Color(153, 204, 255));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -128,12 +128,12 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         jPanel1.add(txtNombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 130, 170, 30));
 
         btnInsertaCliente.setBackground(new java.awt.Color(255, 255, 255));
-        btnInsertaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/arrow_right.png"))); // NOI18N
+        btnInsertaCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/arrow_right.png"))); // NOI18N
         btnInsertaCliente.setText("Añadir");
         btnInsertaCliente.setBorder(null);
         btnInsertaCliente.setContentAreaFilled(false);
         btnInsertaCliente.setFocusPainted(false);
-        btnInsertaCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/iconosMaxi/auto_correct.png"))); // NOI18N
+        btnInsertaCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/auto_correct.png"))); // NOI18N
         btnInsertaCliente.setRequestFocusEnabled(false);
         btnInsertaCliente.setRolloverEnabled(false);
         jPanel1.add(btnInsertaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 130, 40));
