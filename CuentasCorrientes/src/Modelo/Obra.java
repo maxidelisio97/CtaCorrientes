@@ -17,10 +17,26 @@ public class Obra {
     
     private int idObra;
     private String nombreObra;
+    private int idCliente;
 
     public Obra(int idObra, String nombreObra) {
         this.idObra = idObra;
         this.nombreObra = nombreObra;
+      
+    }
+
+    public Obra(String nombreObra,int idCliente) {
+       
+        this.nombreObra = nombreObra;
+        this.idCliente=idCliente;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public int getIdObra() {

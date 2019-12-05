@@ -19,12 +19,12 @@ public class Remito {
     
     private int idRemito;
     private String numRemito;
-    private Date fechaRemito;
+    private String fechaRemito;
     private int idObra;
     private int idCliente;
     private String rutaPdf;
 
-    public Remito(int idRemito, String numRemito, Date fechaRemito, int idObra, int idCliente, String rutaPdf) {
+    public Remito(int idRemito, String numRemito, String fechaRemito, int idObra, int idCliente, String rutaPdf) {
         this.idRemito = idRemito;
         this.numRemito = numRemito;
         this.fechaRemito = fechaRemito;
@@ -33,7 +33,7 @@ public class Remito {
         this.rutaPdf = rutaPdf;
     }
 
-    public Remito(String numRemito, Date fechaRemito, int idObra, int idCliente, String rutaPdf) {
+    public Remito(String numRemito, String fechaRemito, int idObra, int idCliente, String rutaPdf) {
         this.numRemito = numRemito;
         this.fechaRemito = fechaRemito;
         this.idObra = idObra;
@@ -57,11 +57,11 @@ public class Remito {
         this.numRemito = numRemito;
     }
 
-    public Date getFechaRemito() {
+    public String getFechaRemito() {
         return fechaRemito;
     }
 
-    public void setFechaRemito(Date fechaRemito) {
+    public void setFechaRemito(String fechaRemito) {
         this.fechaRemito = fechaRemito;
     }
 

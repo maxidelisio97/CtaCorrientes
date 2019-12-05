@@ -5,6 +5,7 @@ import Modelo.Cliente;
 import Modelo.CopiarFicheros;
 import Modelo.CrearCarpetaCliente;
 import Modelo.Obra;
+import Modelo.Remito;
 import VISTA.FrameCliente;
 import VISTA.FrameObra;
 import VISTA.FrameRemito;
@@ -47,7 +48,7 @@ public class ControladorEvento {
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
-    private final String rutaPrincipal = "C:\\Users\\maxid\\remitos\\";
+    private final String rutaPrincipal = "C:/Users/maxid/remitos";
     private CrearCarpetaCliente createFile;
     String rutaRemito="";
 
@@ -66,6 +67,7 @@ public class ControladorEvento {
         cargarModeloTabla();
         cargarModeloCombocliente();
         cargarModeloComboObra();
+        frameObra.comboClientes.setModel(modeloComboClientes);
 
         /*       vista.btnLamina.addActionListener(new ActionListener() {
             @Override
@@ -218,22 +220,28 @@ public class ControladorEvento {
                 String nombreRemito = remito.getName();
                 String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
                 String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
+                int idCliente =frameRemito.ComboClientes.getSelectedIndex()+1;
+                int idObra =    frameRemito.ComboObra.getSelectedIndex()+1;
+                System.out.println(idCliente);
+                System.out.println(idObra);
                 String pathRemito = remito.getAbsolutePath();
                 String numRemito = frameRemito.txtNumRemito.getText();
                 String fechaRemito = frameRemito.txtFechaRemito.getText();
-
+                
                
-                createFile.crearCarpeta(rutaPrincipal, nombreCarpetaCliente + "\\" + nombreCarpetaObra);
-                String rutaDestino = rutaPrincipal + "\\" + nombreCarpetaCliente + "\\" + nombreCarpetaObra + "\\" + nombreRemito;
-
+                createFile.crearCarpeta(rutaPrincipal, nombreCarpetaCliente + "/" + nombreCarpetaObra);
+                String rutaDestino = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito;
+                
                 createFile.moveFile(pathRemito, rutaDestino);
-              
+                
                 if(numRemito!=null || fechaRemito!=null){
                 
-                String path = rutaPrincipal + "\\" + nombreCarpetaCliente + "\\" + nombreCarpetaObra + "\\" + numRemito + " "+ fechaRemito;
+                String path = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " "+ fechaRemito;
 
                 createFile.renameFile(pathRemito, path);
                 
+                    insertaRemito(numRemito, fechaRemito, rutaDestino, idObra,idCliente);
+            
                 }
 
 
@@ -247,7 +255,7 @@ public class ControladorEvento {
 
                 modeloComboObra.removeAllElements();
 
-               ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex()+14);
+               ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex()+1);
 
                 for (Obra c : listaObra) {
 
@@ -357,8 +365,10 @@ public class ControladorEvento {
     public Obra enviarObra() {
 
         String nuevaObra = frameObra.txtNuevaObra.getText();
+        
+        int idCliente = frameObra.comboClientes.getSelectedIndex()+1;
 
-        Obra obra = new Obra(nuevaObra);
+        Obra obra = new Obra(nuevaObra,idCliente);
 
         return obra;
 
@@ -469,6 +479,15 @@ public class ControladorEvento {
         }
 
     }
+     
+     
+     public void insertaRemito(String numRemito,String fechaRemito,String rutaArchivo,int idObra,int idCliente){
+         
+         Remito remito = new Remito(numRemito,fechaRemito,idObra,idCliente,rutaArchivo);
+         
+         bd.insertRemito(remito);
+         
+     }
 
     private File fichero;
 

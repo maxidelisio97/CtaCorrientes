@@ -125,7 +125,7 @@ public class BaseDatos {
             ps.setString(3, nuevoCliente.getEmail());
             ps.setBoolean(4, nuevoCliente.isEsInstalador());
             
-            ps.executeQuery();
+            ps.execute();
             
             
             
@@ -146,12 +146,13 @@ public class BaseDatos {
             
             conn = miConexion.dameConexion();
             
-            ps = conn.prepareStatement("INSERT INTO OBRA(NOM_OBRA) VALUES(?)");
+            ps = conn.prepareStatement("INSERT INTO OBRA(NOM_OBRA,ID_CLIENTE) VALUES(?,?)");
             
             ps.setString(1, nuevaObra.getNombreObra());
+            ps.setInt(2, nuevaObra.getIdCliente());
           
             
-            ps.executeQuery();
+            ps.execute();
             
             
             
@@ -243,15 +244,15 @@ public class BaseDatos {
             
             conn = miConexion.dameConexion();
             
-            ps = conn.prepareStatement("INSERT INTO REMITO(NUM_REMITO,FECHA_REMITO,ID_OBRA,ID_CLIENTE,ARCHIVO) VALUES(?,?,?,?,?)");
+            ps = conn.prepareStatement("INSERT INTO remito(NUM_REMITO,FECHA_REMITO,RUTA_ARCHIVO,ID_OBRA,ID_CLIENTE) VALUES(?,?,?,?,?)");
             
             ps.setString(1, remito.getNumRemito());
-            ps.setDate(2, remito.getFechaRemito());
-            ps.setInt(3, remito.getIdObra());
-            ps.setInt(4, remito.getIdCliente());
-            ps.setString(5, remito.getRutaPdf());
+            ps.setString(2, remito.getFechaRemito());
+            ps.setString(3, remito.getRutaPdf());
+            ps.setInt(4, remito.getIdObra());
+            ps.setInt(5, remito.getIdCliente());
             
-            ps.executeQuery();
+            ps.execute();
             
           
         }catch(Exception e){
