@@ -41,7 +41,7 @@ public class BaseDatos {
     
     
     
-    public ResultSet dameCtaPorCliente(String nombreCliente) {
+    public ResultSet dameCtaPorCliente(String nombreCliente,String nombreObra) {
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -51,7 +51,7 @@ public class BaseDatos {
 
             conn = miConexion.dameConexion();
 
-            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO FROM dbcta.CTA_CORRIENTE INNER JOIN dbcta.CLIENTE ON dbcta.CTA_CORRIENTE.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.CTA_CORRIENTE.ID_OBRA=dbcta.OBRA.ID_OBRA INNER JOIN dbcta.REMITO ON dbcta.CTA_CORRIENTE.ID_REMITO = dbcta.REMITO.ID_REMITO WHERE NOM_CLIENTE LIKE" + "'"+ nombreCliente + "%'" );
+            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO ,IMPORTE_CIERRE FROM dbcta.REMITO INNER JOIN dbcta.CLIENTE ON dbcta.REMITO.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.REMITO.ID_OBRA=dbcta.OBRA.ID_OBRA WHERE NOM_CLIENTE LIKE" + "'"+ nombreCliente + "%'" );
 
             rs = ps.executeQuery();
 
@@ -244,13 +244,15 @@ public class BaseDatos {
             
             conn = miConexion.dameConexion();
             
-            ps = conn.prepareStatement("INSERT INTO remito(NUM_REMITO,FECHA_REMITO,RUTA_ARCHIVO,ID_OBRA,ID_CLIENTE) VALUES(?,?,?,?,?)");
+            ps = conn.prepareStatement("INSERT INTO remito(NUM_REMITO,FECHA_REMITO,RUTA_ARCHIVO,IMPORTE_CIERRE,ID_OBRA,ID_CLIENTE) VALUES(?,?,?,?,?,?)");
             
             ps.setString(1, remito.getNumRemito());
             ps.setString(2, remito.getFechaRemito());
             ps.setString(3, remito.getRutaPdf());
-            ps.setInt(4, remito.getIdObra());
-            ps.setInt(5, remito.getIdCliente());
+            ps.setDouble(4, remito.getImporte());
+            ps.setInt(5, remito.getIdObra());
+            ps.setInt(6, remito.getIdCliente());
+            
             
             ps.execute();
             

@@ -9,7 +9,6 @@ import Modelo.Remito;
 import VISTA.FrameCliente;
 import VISTA.FrameObra;
 import VISTA.FrameRemito;
-import VISTA.FrameVerRemitos;
 import VISTA.Principal;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
@@ -43,27 +42,28 @@ public class ControladorEvento {
     FrameObra frameObra;
     FrameRemito frameRemito;
     FrameCliente frameCliente;
-    FrameVerRemitos frameVerRemitos;
+    
     private BaseDatos bd;
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
+    
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
     private final String rutaPrincipal = "C:/Users/maxid/remitos";
     private CrearCarpetaCliente createFile;
-    String rutaRemito="";
+    String rutaRemito = "";
 
     private String path = null;
 
-    public ControladorEvento(Principal vista, BaseDatos bd, FrameVerRemitos frameVerRemitos, FrameCliente frameCliente, FrameObra frameObra,
-                                                                                                                                                                                                            FrameRemito frameRemito) {
+    public ControladorEvento(Principal vista, BaseDatos bd,  FrameCliente frameCliente, FrameObra frameObra,
+            FrameRemito frameRemito) {
 
         this.vista = vista;
         this.bd = bd;
-        this.frameVerRemitos = frameVerRemitos;
+   
         this.frameCliente = frameCliente;
         this.frameObra = frameObra;
         this.frameRemito = frameRemito;
-      
+
         cargarModeloTabla();
         cargarModeloCombocliente();
         cargarModeloComboObra();
@@ -83,34 +83,18 @@ public class ControladorEvento {
             }
 
         });*/
-        
-        this.frameVerRemitos.tablaRemitos.addMouseListener(new java.awt.event.MouseAdapter() {
+        this.frameRemito.tablaRemitos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tablaGastosMouseClicked(evt);
             }
         });
-        
-        
-        this.vista.btnVerRemito.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (!frameVerRemitos.isVisible()) {
 
-                    vista.escritorio.add(frameVerRemitos);
-                    vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
-                    frameVerRemitos.setVisible(true);
-                } else {
-                    vista.escritorio.getDesktopManager().maximizeFrame(frameVerRemitos);
-                }
-            }
-
-        });
+        
 
         this.frameRemito.btnGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                
             }
 
         });
@@ -118,7 +102,6 @@ public class ControladorEvento {
         this.vista.btnLabelObra.addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
-                  
 
                 if (!frameObra.isVisible()) {
 
@@ -214,75 +197,93 @@ public class ControladorEvento {
         this.frameRemito.btnSubirRemito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                     double  importe=0;
+              
+             
                 createFile = new CrearCarpetaCliente();
                 File remito = getFile();
-                String nombreRemito = remito.getName();
-                String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
-                String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
-                int idCliente =frameRemito.ComboClientes.getSelectedIndex()+1;
-                int idObra =    frameRemito.ComboObra.getSelectedIndex()+1;
-                System.out.println(idCliente);
-                System.out.println(idObra);
+                String nombreCarpetaObra =  frameRemito.ComboObra.getSelectedItem().toString();
+                String path = "";
+                int idCliente = frameRemito.ComboClientes.getSelectedIndex() + 1;
+                int idObra = frameRemito.ComboObra.getSelectedIndex() + 1;
                 String pathRemito = remito.getAbsolutePath();
                 String numRemito = frameRemito.txtNumRemito.getText();
                 String fechaRemito = frameRemito.txtFechaRemito.getText();
+
+                String nombreRemito = remito.getName();
+                String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
+
+                if (numRemito != null || fechaRemito != null) {
+                        
+                        createFile.crearCarpeta(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito);
+                         createFile.renameFile(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " " + fechaRemito+ ".pdf" );
+                        createFile.moveFile(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito);
+                          if(frameRemito.checkbox.isSelected()){
+                       importe =Double.parseDouble(frameRemito.txtImporteRemito.getText());
+                }else{
+                    importe=0;
+                }
+                insertaRemito(numRemito, fechaRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " " + fechaRemito + ".pdf", idObra, idCliente,importe);
+                    
+
+                }
+            }
+            
+        });
+        
+     frameRemito.checkbox.addActionListener(new ActionListener() {
+           
+         public void actionPerformed(ActionEvent e) {
+                 boolean state =   frameRemito.checkbox.isSelected();
+                
+                 if(state==true){
+                       frameRemito.txtImporteRemito.setEnabled(true);
+                 }else{
+                        frameRemito.txtImporteRemito.setEnabled(false);
+                 }
+             
+                
                 
                
-                createFile.crearCarpeta(rutaPrincipal, nombreCarpetaCliente + "/" + nombreCarpetaObra);
-                String rutaDestino = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito;
                 
-                createFile.moveFile(pathRemito, rutaDestino);
-                
-                if(numRemito!=null || fechaRemito!=null){
-                
-                String path = rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " "+ fechaRemito;
-
-                createFile.renameFile(pathRemito, path);
-                
-                    insertaRemito(numRemito, fechaRemito, rutaDestino, idObra,idCliente);
-            
-                }
-
-
             }
-
-        });
+     });
+     
 
         frameRemito.ComboClientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                
+                System.out.println(frameRemito.ComboClientes.getSelectedItem());
+                System.out.println(frameRemito.ComboObra.getSelectedItem());
                 modeloComboObra.removeAllElements();
 
-               ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex()+1);
+                ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex() + 1);
 
                 for (Obra c : listaObra) {
 
-                    modeloComboObra.addElement(c);  
+                    modeloComboObra.addElement(c);
 
                 }
 
-                frameRemito.ComboObra.setModel(modeloComboObra); 
-              
-                
+                frameRemito.ComboObra.setModel(modeloComboObra);
 
             }
 
         });
 
-        frameVerRemitos.txtBuscarRemito.addKeyListener(new KeyAdapter() {
+        frameRemito.txtBuscarRemito.addKeyListener(new KeyAdapter() {
 
             @Override
             public void keyPressed(KeyEvent e) {
 
                 limpiarTabla();
 
-                String criterio = frameVerRemitos.txtBuscarRemito.getText();
+                String criterio = frameRemito.txtBuscarRemito.getText();
 
                 recibeCTAPorCriterio(criterio);
 
-                frameVerRemitos.tablaRemitos.setModel(modeloTablaRemitos);
+                frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
             }
 
         });
@@ -292,9 +293,8 @@ public class ControladorEvento {
     public void recibeCTAPorCriterio(String criterio) {
 
         ResultSet rs = null;
-        
 
-        if (frameVerRemitos.radioCliente.isSelected()) {
+        if (frameRemito.radioCliente.isSelected()) {
 
             rs = bd.dameCtaPorCliente(criterio);
         } else {
@@ -308,7 +308,7 @@ public class ControladorEvento {
 
             while (rs.next()) {
 
-                Object fila[] = new Object[numColumnas +1];
+                Object fila[] = new Object[numColumnas + 1];
 
                 for (int i = 0; i < numColumnas; i++) {
 
@@ -316,8 +316,8 @@ public class ControladorEvento {
                     fila[1] = rs.getObject(2);
                     fila[2] = rs.getObject(3);
                     fila[3] = rs.getObject(4);
-                    fila[4] =this.frameVerRemitos.btnVerFactura;
-                  
+                    fila[4] = rs.getObject(5);
+                    fila[5] = this.frameRemito.btnVerFactura;
 
                 }
 
@@ -365,22 +365,23 @@ public class ControladorEvento {
     public Obra enviarObra() {
 
         String nuevaObra = frameObra.txtNuevaObra.getText();
-        
-        int idCliente = frameObra.comboClientes.getSelectedIndex()+1;
 
-        Obra obra = new Obra(nuevaObra,idCliente);
+        int idCliente = frameObra.comboClientes.getSelectedIndex() + 1;
+
+        Obra obra = new Obra(nuevaObra, idCliente);
 
         return obra;
 
     }
 
     public void cargarModeloTabla() {
-        
-      //   modeloTablaRemitos.addColumn("Id");
+
+        //   modeloTablaRemitos.addColumn("Id");
         modeloTablaRemitos.addColumn("Nombre cliente");
         modeloTablaRemitos.addColumn("Nombre obra");
         modeloTablaRemitos.addColumn("Instalador");
         modeloTablaRemitos.addColumn("Numero remito");
+        modeloTablaRemitos.addColumn("Importe");
         modeloTablaRemitos.addColumn("Archivo");
     }
 
@@ -424,50 +425,48 @@ public class ControladorEvento {
         return fichero;
 
     }
-    
-     public void verRemito(String numRemito) {
+
+    public void verRemito(String numRemito) {
 
         ImageIcon ImagenGasto = null;
-          
-        
+
         byte[] b = null;
 
         try {
-            
+
             ResultSet rs = bd.getRemito(numRemito);
-            
-            while(rs.next()){
-                
-                 rutaRemito = rs.getString("RUTA_ARCHIVO");
+
+            while (rs.next()) {
+
+                rutaRemito = rs.getString("RUTA_ARCHIVO");
             }
 
-          
         } catch (Exception e) {
 
             e.printStackTrace();
         }
-        
-    }
-    
-     private void tablaGastosMouseClicked(java.awt.event.MouseEvent evt) {
-        int rown = this.frameVerRemitos.tablaRemitos.rowAtPoint(evt.getPoint());
-        int column = this.frameVerRemitos.tablaRemitos.getColumnModel().getColumnIndexAtX(evt.getX());
-        int row = evt.getY() / this.frameVerRemitos.tablaRemitos.getRowHeight();
 
-        if (row < this.frameVerRemitos.tablaRemitos.getRowCount() && row >= 0 && column < this.frameVerRemitos.tablaRemitos.getColumnCount() && column >= 0) {
-            Object value =this.frameVerRemitos.tablaRemitos.getValueAt(row, column);
+    }
+
+    private void tablaGastosMouseClicked(java.awt.event.MouseEvent evt) {
+        int rown = this.frameRemito.tablaRemitos.rowAtPoint(evt.getPoint());
+        int column = this.frameRemito.tablaRemitos.getColumnModel().getColumnIndexAtX(evt.getX());
+        int row = evt.getY() / this.frameRemito.tablaRemitos.getRowHeight();
+
+        if (row < this.frameRemito.tablaRemitos.getRowCount() && row >= 0 && column < this.frameRemito.tablaRemitos.getColumnCount() && column >= 0) {
+            Object value = this.frameRemito.tablaRemitos.getValueAt(row, column);
 
             if (value instanceof JButton) {
 
                 ((JButton) value).doClick();
                 JButton boton = (JButton) value;
 
-                if (boton.getName().equals("v")) { 
+                if (boton.getName().equals("v")) {
 
-                   String numRemito =(String) this.frameVerRemitos.tablaRemitos.getValueAt(rown, 3);
-                   
+                    String numRemito = (String) this.frameRemito.tablaRemitos.getValueAt(rown, 3);
+
                     verRemito(numRemito);
-           
+
                     try {
                         Desktop.getDesktop().open(new File(rutaRemito));
                     } catch (IOException ex) {
@@ -479,15 +478,14 @@ public class ControladorEvento {
         }
 
     }
-     
-     
-     public void insertaRemito(String numRemito,String fechaRemito,String rutaArchivo,int idObra,int idCliente){
-         
-         Remito remito = new Remito(numRemito,fechaRemito,idObra,idCliente,rutaArchivo);
-         
-         bd.insertRemito(remito);
-         
-     }
+
+    public void insertaRemito(String numRemito, String fechaRemito, String rutaArchivo, int idObra, int idCliente,double importe) {
+
+        Remito remito = new Remito(numRemito, fechaRemito, idObra, idCliente, rutaArchivo,importe);
+
+        bd.insertRemito(remito);
+
+    }
 
     private File fichero;
 

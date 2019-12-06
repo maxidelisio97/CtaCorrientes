@@ -205,7 +205,7 @@ public class Principal extends javax.swing.JFrame {
     public javax.swing.JPanel panelMenu;
     // End of variables declaration//GEN-END:variables
     public FrameObra frameObra;
-    public FrameVerRemitos frameRemitos=new FrameVerRemitos();
+
     public rsbuttom.RSButtonMetro btnObra;
     public rsbuttom.RSButtonMetro btnRemito;
     

@@ -23,6 +23,7 @@ public class Remito {
     private int idObra;
     private int idCliente;
     private String rutaPdf;
+    private double importe;
 
     public Remito(int idRemito, String numRemito, String fechaRemito, int idObra, int idCliente, String rutaPdf) {
         this.idRemito = idRemito;
@@ -33,12 +34,21 @@ public class Remito {
         this.rutaPdf = rutaPdf;
     }
 
-    public Remito(String numRemito, String fechaRemito, int idObra, int idCliente, String rutaPdf) {
+    public Remito(String numRemito, String fechaRemito, int idObra, int idCliente, String rutaPdf,double importe) {
         this.numRemito = numRemito;
         this.fechaRemito = fechaRemito;
         this.idObra = idObra;
         this.idCliente = idCliente;
         this.rutaPdf = rutaPdf;
+        this.importe=importe;
+    }
+
+    public double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
     }
 
     public int getIdRemito() {
