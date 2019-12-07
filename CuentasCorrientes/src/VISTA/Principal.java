@@ -19,6 +19,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
+       
         
 //new CambiaPanel(escritorio,frameObra);
        
@@ -43,6 +44,13 @@ public class Principal extends javax.swing.JFrame {
         btnLabelCliente = new rsbuttom.RSButtonMetro();
         jPanel1 = new javax.swing.JPanel();
         btnLamina = new javax.swing.JButton();
+        txtBuscarRemitoCliente = new javax.swing.JTextField();
+        txtBuscarRemitoObra = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 51, 51));
@@ -150,6 +158,33 @@ public class Principal extends javax.swing.JFrame {
         });
         jPanel1.add(btnLamina, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 50, 40));
 
+        txtBuscarRemitoCliente.setBackground(new java.awt.Color(51, 153, 255));
+        txtBuscarRemitoCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBuscarRemitoCliente.setBorder(null);
+        jPanel1.add(txtBuscarRemitoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 10, 160, 40));
+
+        txtBuscarRemitoObra.setBackground(new java.awt.Color(51, 153, 255));
+        txtBuscarRemitoObra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        txtBuscarRemitoObra.setBorder(null);
+        jPanel1.add(txtBuscarRemitoObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 10, 160, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-c-26.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 10, 30, 40));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-o-26.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 10, 30, 40));
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-70.png"))); // NOI18N
+        jButton1.setBorder(null);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-80.png"))); // NOI18N
+        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-80.png"))); // NOI18N
+        jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-80.png"))); // NOI18N
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 0, 50, 50));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 160, -1));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 160, -1));
+
         panelBack.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 941, 58));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,9 +235,16 @@ public class Principal extends javax.swing.JFrame {
     public rsbuttom.RSButtonMetro btnRemito1;
     public rsbuttom.RSButtonMetro btnVerRemito;
     public javax.swing.JDesktopPane escritorio;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    public javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     public java.awt.Panel panelBack;
     public javax.swing.JPanel panelMenu;
+    public javax.swing.JTextField txtBuscarRemitoCliente;
+    public javax.swing.JTextField txtBuscarRemitoObra;
     // End of variables declaration//GEN-END:variables
     public FrameObra frameObra;
 

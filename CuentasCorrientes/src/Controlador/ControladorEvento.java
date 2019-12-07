@@ -51,6 +51,7 @@ public class ControladorEvento {
     private final String rutaPrincipal = "C:/Users/maxid/remitos";
     private CrearCarpetaCliente createFile;
     String rutaRemito = "";
+    String seleccion1="";
 
     private String path = null;
 
@@ -249,14 +250,54 @@ public class ControladorEvento {
             }
      });
      
+         this.vista.txtBuscarRemitoObra.addKeyListener(new KeyAdapter(){
+             @Override
+            public void keyPressed(KeyEvent e) {
+
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    
+                       limpiarTabla();
+                     String criterio = vista.txtBuscarRemitoCliente.getText();
+                 String obra = vista.txtBuscarRemitoObra.getText();
+                   recibeCTAPorCriterio(criterio,obra);
+
+                frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
+                }
+                }
+                });
+      
+     this.vista.txtBuscarRemitoCliente.addKeyListener(new KeyAdapter(){
+             @Override
+            public void keyPressed(KeyEvent e) {
+
+                if(e.getKeyCode()==KeyEvent.VK_ENTER){
+                    
+                      limpiarTabla();
+                     String criterio = vista.txtBuscarRemitoCliente.getText();
+                 String obra = vista.txtBuscarRemitoObra.getText();
+                    recibeCTAPorCriterio(criterio,obra);
+
+                frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
+                  
+                }
+           
+              
+            }
+         
+         
+     });
+     
+    
+     
 
         frameRemito.ComboClientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                System.out.println(frameRemito.ComboClientes.getSelectedItem());
-                System.out.println(frameRemito.ComboObra.getSelectedItem());
-                modeloComboObra.removeAllElements();
+                  frameRemito.ComboObra.setModel(modeloComboObra);
+
+              
+                modeloComboObra.removeAllElements();    
 
                 ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex() + 1);
 
@@ -265,13 +306,15 @@ public class ControladorEvento {
                     modeloComboObra.addElement(c);
 
                 }
-
-                frameRemito.ComboObra.setModel(modeloComboObra);
-
+                
+               
+                
+                 
             }
 
         });
-
+        
+        
         frameRemito.txtBuscarRemito.addKeyListener(new KeyAdapter() {
 
             @Override
@@ -280,8 +323,9 @@ public class ControladorEvento {
                 limpiarTabla();
 
                 String criterio = frameRemito.txtBuscarRemito.getText();
+                
 
-                recibeCTAPorCriterio(criterio);
+              //  recibeCTAPorCriterio(criterio);
 
                 frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
             }
@@ -290,13 +334,13 @@ public class ControladorEvento {
 
     }
 
-    public void recibeCTAPorCriterio(String criterio) {
+    public void recibeCTAPorCriterio(String criterio, String obra) {
 
         ResultSet rs = null;
 
         if (frameRemito.radioCliente.isSelected()) {
 
-            rs = bd.dameCtaPorCliente(criterio);
+            rs = bd.dameCtaPorCliente(criterio,obra);
         } else {
 
             rs = bd.dameCtaPorObra(criterio);
