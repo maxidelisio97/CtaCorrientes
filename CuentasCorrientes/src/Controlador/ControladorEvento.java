@@ -42,25 +42,25 @@ public class ControladorEvento {
     FrameObra frameObra;
     FrameRemito frameRemito;
     FrameCliente frameCliente;
-    
+
     private BaseDatos bd;
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
-    
+
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
     private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
     private final String rutaPrincipal = "C:/Users/maxid/remitos";
     private CrearCarpetaCliente createFile;
     String rutaRemito = "";
-    String seleccion1="";
+    String seleccion1 = "";
 
     private String path = null;
 
-    public ControladorEvento(Principal vista, BaseDatos bd,  FrameCliente frameCliente, FrameObra frameObra,
+    public ControladorEvento(Principal vista, BaseDatos bd, FrameCliente frameCliente, FrameObra frameObra,
             FrameRemito frameRemito) {
 
         this.vista = vista;
         this.bd = bd;
-   
+
         this.frameCliente = frameCliente;
         this.frameObra = frameObra;
         this.frameRemito = frameRemito;
@@ -89,8 +89,6 @@ public class ControladorEvento {
                 tablaGastosMouseClicked(evt);
             }
         });
-
-        
 
         this.frameRemito.btnGuardar.addActionListener(new ActionListener() {
             @Override
@@ -198,12 +196,11 @@ public class ControladorEvento {
         this.frameRemito.btnSubirRemito.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                     double  importe=0;
-              
-             
+                double importe = 0;
+
                 createFile = new CrearCarpetaCliente();
                 File remito = getFile();
-                String nombreCarpetaObra =  frameRemito.ComboObra.getSelectedItem().toString();
+                String nombreCarpetaObra = frameRemito.ComboObra.getSelectedItem().toString();
                 String path = "";
                 int idCliente = frameRemito.ComboClientes.getSelectedIndex() + 1;
                 int idObra = frameRemito.ComboObra.getSelectedIndex() + 1;
@@ -215,89 +212,99 @@ public class ControladorEvento {
                 String nombreCarpetaCliente = frameRemito.ComboClientes.getSelectedItem().toString();
 
                 if (numRemito != null || fechaRemito != null) {
-                        
-                        createFile.crearCarpeta(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito);
-                         createFile.renameFile(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " " + fechaRemito+ ".pdf" );
-                        createFile.moveFile(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito);
-                          if(frameRemito.checkbox.isSelected()){
-                       importe =Double.parseDouble(frameRemito.txtImporteRemito.getText());
-                }else{
-                    importe=0;
-                }
-                insertaRemito(numRemito, fechaRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " " + fechaRemito + ".pdf", idObra, idCliente,importe);
-                    
+
+                    createFile.crearCarpeta(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito);
+                    createFile.renameFile(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " " + fechaRemito + ".pdf");
+                    createFile.moveFile(pathRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + nombreRemito);
+                    if (frameRemito.checkbox.isSelected()) {
+                        importe = Double.parseDouble(frameRemito.txtImporteRemito.getText());
+                    } else {
+                        importe = 0;
+                    }
+                    insertaRemito(numRemito, fechaRemito, rutaPrincipal + "/" + nombreCarpetaCliente + "/" + nombreCarpetaObra + "/" + numRemito + " " + fechaRemito + ".pdf", idObra, idCliente, importe);
 
                 }
             }
-            
+
         });
-        
-     frameRemito.checkbox.addActionListener(new ActionListener() {
-           
-         public void actionPerformed(ActionEvent e) {
-                 boolean state =   frameRemito.checkbox.isSelected();
-                
-                 if(state==true){
-                       frameRemito.txtImporteRemito.setEnabled(true);
-                 }else{
-                        frameRemito.txtImporteRemito.setEnabled(false);
-                 }
-             
-                
-                
-               
-                
+
+        frameRemito.checkbox.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                boolean state = frameRemito.checkbox.isSelected();
+
+                if (state == true) {
+                    frameRemito.txtImporteRemito.setEnabled(true);
+                } else {
+                    frameRemito.txtImporteRemito.setEnabled(false);
+                }
+
             }
-     });
-     
-         this.vista.txtBuscarRemitoObra.addKeyListener(new KeyAdapter(){
-             @Override
+        });
+
+        this.vista.txtBuscarRemitoObra.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
 
-                if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    
-                       limpiarTabla();
-                     String criterio = vista.txtBuscarRemitoCliente.getText();
-                 String obra = vista.txtBuscarRemitoObra.getText();
-                   recibeCTAPorCriterio(criterio,obra);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
+                    limpiarTabla();
+                    String criterio = vista.txtBuscarRemitoCliente.getText();
+                    String obra = vista.txtBuscarRemitoObra.getText();
+                 //   recibeCTAPorCriterio(criterio, obra);
+                           if (obra.equals("")) {
+                           
+                           recibeCTAPorCliente(criterio);
+
+                    } else if (!obra.equals("") && !criterio.equals("")) {
+                        
+                           recibeCTAPorClienteyObra(criterio, obra);
+                        
+                    }
+
+                    frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
                 }
-                }
-                });
-      
-     this.vista.txtBuscarRemitoCliente.addKeyListener(new KeyAdapter(){
-             @Override
+            }
+        });
+
+        this.vista.txtBuscarRemitoCliente.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyPressed(KeyEvent e) {
 
-                if(e.getKeyCode()==KeyEvent.VK_ENTER){
-                    
-                      limpiarTabla();
-                     String criterio = vista.txtBuscarRemitoCliente.getText();
-                 String obra = vista.txtBuscarRemitoObra.getText();
-                    recibeCTAPorCriterio(criterio,obra);
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
-                  
+                           limpiarTabla();
+                    String criterio = vista.txtBuscarRemitoCliente.getText();
+                    String obra = vista.txtBuscarRemitoObra.getText();
+                    
+                    
+                       if (obra.equals("")) {
+                           
+                           recibeCTAPorCliente(criterio);
+
+                    } else if (!obra.equals("") && !criterio.equals("")) {
+                        
+                           recibeCTAPorClienteyObra(criterio, obra);
+                        
+                    }
+                    //     recibeCTAPorCriterio(criterio,obra);
+
+                        frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
+                 
+
                 }
-           
-              
+
             }
-         
-         
-     });
-     
-    
-     
+
+        });
 
         frameRemito.ComboClientes.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                  frameRemito.ComboObra.setModel(modeloComboObra);
 
-              
-                modeloComboObra.removeAllElements();    
+                frameRemito.ComboObra.setModel(modeloComboObra);
+
+                modeloComboObra.removeAllElements();
 
                 ArrayList<Obra> listaObra = bd.selectObra(frameRemito.ComboClientes.getSelectedIndex() + 1);
 
@@ -306,15 +313,11 @@ public class ControladorEvento {
                     modeloComboObra.addElement(c);
 
                 }
-                
-               
-                
-                 
+
             }
 
         });
-        
-        
+
         frameRemito.txtBuscarRemito.addKeyListener(new KeyAdapter() {
 
             @Override
@@ -323,10 +326,8 @@ public class ControladorEvento {
                 limpiarTabla();
 
                 String criterio = frameRemito.txtBuscarRemito.getText();
-                
 
-              //  recibeCTAPorCriterio(criterio);
-
+                  recibeCTAPorCriterio(criterio);
                 frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
             }
 
@@ -334,13 +335,13 @@ public class ControladorEvento {
 
     }
 
-    public void recibeCTAPorCriterio(String criterio, String obra) {
+    public void recibeCTAPorCriterio(String criterio) {
 
         ResultSet rs = null;
 
         if (frameRemito.radioCliente.isSelected()) {
 
-            rs = bd.dameCtaPorCliente(criterio,obra);
+            rs = bd.dameCtaPorCliente(criterio);
         } else {
 
             rs = bd.dameCtaPorObra(criterio);
@@ -368,6 +369,80 @@ public class ControladorEvento {
                 modeloTablaRemitos.addRow(fila);
 
             }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+    public void recibeCTAPorCliente(String cliente) {
+
+        ResultSet rs = null;
+
+            rs = bd.dameCtaPorCliente2(cliente);
+        try {
+
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numColumnas = metaData.getColumnCount();
+
+            while (rs.next()) {
+
+                Object fila[] = new Object[numColumnas + 1];
+
+                for (int i = 0; i < numColumnas; i++) {
+
+                    fila[0] = rs.getObject(1);
+                    fila[1] = rs.getObject(2);
+                    fila[2] = rs.getObject(3);
+                    fila[3] = rs.getObject(4);
+                    fila[4] = rs.getObject(5);
+                    fila[5] = this.frameRemito.btnVerFactura;
+
+                }
+
+                modeloTablaRemitos.addRow(fila);
+
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorEvento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
+     
+
+    
+
+    public void recibeCTAPorClienteyObra(String cliente, String obra) {
+
+        ResultSet rs = null;
+
+        rs = bd.dameCtaPorClienteyObra(cliente, obra);
+        try {
+            ResultSetMetaData metaData = rs.getMetaData();
+            int numColumnas = metaData.getColumnCount();
+
+            while (rs.next()) {
+
+                Object fila[] = new Object[numColumnas + 1];
+
+                for (int i = 0; i < numColumnas; i++) {
+
+                    fila[0] = rs.getObject(1);
+                    fila[1] = rs.getObject(2);
+                    fila[2] = rs.getObject(3);
+                    fila[3] = rs.getObject(4);
+                    fila[4] = rs.getObject(5);
+                    fila[5] = this.frameRemito.btnVerFactura;
+
+                }
+
+                modeloTablaRemitos.addRow(fila);
+
+            }
+
         } catch (SQLException ex) {
             Logger.getLogger(ControladorEvento.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -523,9 +598,9 @@ public class ControladorEvento {
 
     }
 
-    public void insertaRemito(String numRemito, String fechaRemito, String rutaArchivo, int idObra, int idCliente,double importe) {
+    public void insertaRemito(String numRemito, String fechaRemito, String rutaArchivo, int idObra, int idCliente, double importe) {
 
-        Remito remito = new Remito(numRemito, fechaRemito, idObra, idCliente, rutaArchivo,importe);
+        Remito remito = new Remito(numRemito, fechaRemito, idObra, idCliente, rutaArchivo, importe);
 
         bd.insertRemito(remito);
 

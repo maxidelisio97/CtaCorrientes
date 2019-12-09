@@ -10,6 +10,7 @@ import Modelo.Obra;
 import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 
 
 
@@ -29,7 +30,8 @@ public class FrameRemito extends javax.swing.JInternalFrame {
          tablaRemitos.setDefaultRenderer(Object.class, new Render());
         btnVerFactura.setName("v");
         
-      
+        AutoCompleteDecorator.decorate(ComboClientes);
+         AutoCompleteDecorator.decorate(ComboObra);
         ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
     }
 
@@ -72,10 +74,11 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(629, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        ComboObra.setEditable(true);
         ComboObra.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ComboObra.setBorder(null);
         ComboObra.setLightWeightPopupEnabled(false);
-        jPanel1.add(ComboObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 170, -1));
+        jPanel1.add(ComboObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 50, 170, 30));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 204, 255));
@@ -125,6 +128,7 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         });
         jPanel1.add(txtBuscarRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 430, 30));
 
+        ComboClientes.setEditable(true);
         ComboClientes.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         ComboClientes.setBorder(null);
         ComboClientes.setLightWeightPopupEnabled(false);

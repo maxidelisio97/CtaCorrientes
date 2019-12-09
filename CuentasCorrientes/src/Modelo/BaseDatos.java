@@ -41,7 +41,7 @@ public class BaseDatos {
     
     
     
-    public ResultSet dameCtaPorCliente(String cliente , String obra) {
+    public ResultSet dameCtaPorClienteyObra(String cliente , String obra) {
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -51,7 +51,7 @@ public class BaseDatos {
 
             conn = miConexion.dameConexion();
 
-            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO ,IMPORTE_CIERRE FROM dbcta.REMITO INNER JOIN dbcta.CLIENTE ON dbcta.REMITO.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.REMITO.ID_OBRA=dbcta.OBRA.ID_OBRA WHERE NOM_CLIENTE=? AND NOM_OBRA=?"  );
+            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO ,IMPORTE_CIERRE,RUTA_ARCHIVO FROM dbcta.REMITO INNER JOIN dbcta.CLIENTE ON dbcta.REMITO.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.REMITO.ID_OBRA=dbcta.OBRA.ID_OBRA WHERE NOM_CLIENTE=? AND NOM_OBRA=?"  );
 
             ps.setString(1, cliente);
             ps.setString(2, obra);
@@ -64,8 +64,8 @@ public class BaseDatos {
 
         return rs;
     }
-
-     public ResultSet dameIdCliente(String nombreCliente) {
+    
+     public ResultSet dameCtaPorCliente(String cliente) {
 
         Connection conn = null;
         PreparedStatement ps = null;
@@ -75,8 +75,10 @@ public class BaseDatos {
 
             conn = miConexion.dameConexion();
 
-            ps = conn.prepareStatement("SELECT ID_CLIENTE FROM CLIENTE WHERE NOM_CLIENTE LIKE" + "'"+ nombreCliente + "%'" );
+            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO ,IMPORTE_CIERRE,RUTA_ARCHIVO FROM dbcta.REMITO INNER JOIN dbcta.CLIENTE ON dbcta.REMITO.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.REMITO.ID_OBRA=dbcta.OBRA.ID_OBRA WHERE NOM_CLIENTE LIKE" + "'"+ cliente + "%'" );
 
+          
+           
             rs = ps.executeQuery();
 
         } catch (Exception e) {
@@ -86,6 +88,8 @@ public class BaseDatos {
 
         return rs;
     }
+
+     
     public ResultSet dameCtaPorObra(String nombreObra) {
 
         Connection conn = null;
@@ -96,8 +100,32 @@ public class BaseDatos {
 
             conn = miConexion.dameConexion();
 
-            ps = conn.prepareStatement("SELECT NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO FROM dbcta.CTA_CORRIENTE INNER JOIN dbcta.CLIENTE ON dbcta.CTA_CORRIENTE.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.CTA_CORRIENTE.ID_OBRA=dbcta.OBRA.ID_OBRA INNER JOIN dbcta.REMITO ON dbcta.CTA_CORRIENTE.ID_REMITO = dbcta.REMITO.ID_REMITO WHERE NOM_OBRA LIKE" + "'"+ nombreObra + "%'" );
+            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO ,IMPORTE_CIERRE,RUTA_ARCHIVO FROM dbcta.REMITO INNER JOIN dbcta.CLIENTE ON dbcta.REMITO.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.REMITO.ID_OBRA=dbcta.OBRA.ID_OBRA WHERE NOM_OBRA LIKE" + "'"+ nombreObra + "%'" );
 
+            
+            rs = ps.executeQuery();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
+
+        return rs;
+    }
+    
+   
+    public ResultSet dameCtaPorCliente2(String nombreCliente) {
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+
+            conn = miConexion.dameConexion();
+
+            ps = conn.prepareStatement("SELECT  NOM_CLIENTE,NOM_OBRA,ES_INSTALADOR_CLIENTE_,NUM_REMITO ,IMPORTE_CIERRE,RUTA_ARCHIVO FROM dbcta.REMITO INNER JOIN dbcta.CLIENTE ON dbcta.REMITO.ID_CLIENTE = dbcta.CLIENTE.ID_CLIENTE INNER JOIN dbcta.OBRA ON dbcta.REMITO.ID_OBRA=dbcta.OBRA.ID_OBRA WHERE  NOM_CLIENTE=?");
+            ps.setString(1, nombreCliente);
             rs = ps.executeQuery();
 
         } catch (Exception e) {

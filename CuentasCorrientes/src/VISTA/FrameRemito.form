@@ -53,6 +53,7 @@
       <SubComponents>
         <Component class="javax.swing.JComboBox" name="ComboObra">
           <Properties>
+            <Property name="editable" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
@@ -70,7 +71,7 @@
           </AuxValues>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="380" y="50" width="170" height="-1"/>
+              <AbsoluteConstraints x="380" y="50" width="170" height="30"/>
             </Constraint>
           </Constraints>
         </Component>
@@ -231,6 +232,7 @@
         </Component>
         <Component class="javax.swing.JComboBox" name="ComboClientes">
           <Properties>
+            <Property name="editable" type="boolean" value="true"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
