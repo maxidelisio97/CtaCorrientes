@@ -135,7 +135,6 @@ public class FrameCliente extends javax.swing.JInternalFrame {
         btnInsertaCliente.setFocusPainted(false);
         btnInsertaCliente.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/auto_correct.png"))); // NOI18N
         btnInsertaCliente.setRequestFocusEnabled(false);
-        btnInsertaCliente.setRolloverEnabled(false);
         jPanel1.add(btnInsertaCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 130, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

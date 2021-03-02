@@ -330,7 +330,6 @@
               <Image iconType="3" name="/iconosMaxi/auto_correct.png"/>
             </Property>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
-            <Property name="rolloverEnabled" type="boolean" value="false"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

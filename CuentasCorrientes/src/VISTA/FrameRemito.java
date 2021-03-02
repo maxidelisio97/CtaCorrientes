@@ -121,11 +121,6 @@ public class FrameRemito extends javax.swing.JInternalFrame {
         txtBuscarRemito.setForeground(new java.awt.Color(51, 204, 255));
         txtBuscarRemito.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtBuscarRemito.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
-        txtBuscarRemito.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBuscarRemitoActionPerformed(evt);
-            }
-        });
         jPanel1.add(txtBuscarRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, 430, 30));
 
         ComboClientes.setEditable(true);
@@ -229,10 +224,6 @@ public class FrameRemito extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtBuscarRemitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarRemitoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBuscarRemitoActionPerformed
 
      public JButton btnVerFactura = new JButton(new ImageIcon(getClass().getResource("/iconosMaxi/acrobat.png")));
 

@@ -19,7 +19,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         setLocationRelativeTo(null);
-       
+        setResizable(false);
         
 //new CambiaPanel(escritorio,frameObra);
        
@@ -64,14 +64,14 @@ public class Principal extends javax.swing.JFrame {
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 680, Short.MAX_VALUE)
+            .addGap(0, 770, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 520, Short.MAX_VALUE)
         );
 
-        panelBack.add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 59, 680, 520));
+        panelBack.add(escritorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(241, 59, 770, 520));
 
         panelMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -92,7 +92,7 @@ public class Principal extends javax.swing.JFrame {
                 btnRemito1MousePressed(evt);
             }
         });
-        panelMenu.add(btnRemito1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 250, 50));
+        panelMenu.add(btnRemito1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 300, 240, 50));
 
         btnLabelObra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
         btnLabelObra.setText("OBRA                         +");
@@ -106,7 +106,7 @@ public class Principal extends javax.swing.JFrame {
         btnLabelObra.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLabelObra.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnLabelObra.setIconTextGap(25);
-        panelMenu.add(btnLabelObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 250, 50));
+        panelMenu.add(btnLabelObra, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 240, 50));
 
         btnVerRemito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
         btnVerRemito.setText("CUENTA CORRIENTE   +");
@@ -125,7 +125,7 @@ public class Principal extends javax.swing.JFrame {
                 btnVerRemitoMousePressed(evt);
             }
         });
-        panelMenu.add(btnVerRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 250, 50));
+        panelMenu.add(btnVerRemito, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 240, 50));
 
         btnLabelCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/market.png"))); // NOI18N
         btnLabelCliente.setText("CLIENTE                     +");
@@ -139,9 +139,9 @@ public class Principal extends javax.swing.JFrame {
         btnLabelCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnLabelCliente.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         btnLabelCliente.setIconTextGap(25);
-        panelMenu.add(btnLabelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 250, 40));
+        panelMenu.add(btnLabelCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 240, 50));
 
-        panelBack.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 59, -1, 520));
+        panelBack.add(panelMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 59, 250, 520));
 
         jPanel1.setBackground(new java.awt.Color(51, 153, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -177,7 +177,7 @@ public class Principal extends javax.swing.JFrame {
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-70.png"))); // NOI18N
         jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-80.png"))); // NOI18N
         jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-80.png"))); // NOI18N
         jButton1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/iconosMaxi/icons8-google-web-search-80.png"))); // NOI18N
@@ -185,15 +185,13 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 160, -1));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 50, 160, -1));
 
-        panelBack.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 941, 58));
+        panelBack.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 58));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,13 +200,6 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRemito1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemito1MousePressed
-        this.btnLabelObra.setSelected(false);
-        this.btnRemito1.setSelected(true);
-        this.btnLabelCliente.setSelected(false);
-        this.btnVerRemito.setSelected(false);
-    }//GEN-LAST:event_btnRemito1MousePressed
 
     private void btnVerRemitoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVerRemitoMousePressed
 
@@ -222,6 +213,13 @@ public class Principal extends javax.swing.JFrame {
             Animacion.Animacion.mover_derecha(-270, 0, 2, 2, panelMenu);
         }
     }//GEN-LAST:event_btnLaminaActionPerformed
+
+    private void btnRemito1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRemito1MousePressed
+        this.btnLabelObra.setSelected(false);
+        this.btnRemito1.setSelected(true);
+        this.btnLabelCliente.setSelected(false);
+        this.btnVerRemito.setSelected(false);
+    }//GEN-LAST:event_btnRemito1MousePressed
 
     /**
      * @param args the command line arguments

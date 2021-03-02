@@ -9,6 +9,11 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class BaseDatos {
+    
+    Connection conn = null;
+        ResultSet rs = null;
+        Statement st = null;
+        PreparedStatement ps = null;
 
     public BaseDatos() {
 
@@ -17,10 +22,6 @@ public class BaseDatos {
     }
 
      public ResultSet getRemito(String id){
-        
-        Connection conn =null;
-        PreparedStatement ps = null;
-        ResultSet rs =null;
        
         
         try{
@@ -43,10 +44,6 @@ public class BaseDatos {
     
     public ResultSet dameCtaPorClienteyObra(String cliente , String obra) {
 
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
         try {
 
             conn = miConexion.dameConexion();
@@ -67,9 +64,6 @@ public class BaseDatos {
     
      public ResultSet dameCtaPorCliente(String cliente) {
 
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
 
         try {
 
@@ -92,10 +86,6 @@ public class BaseDatos {
      
     public ResultSet dameCtaPorObra(String nombreObra) {
 
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
-
         try {
 
             conn = miConexion.dameConexion();
@@ -116,9 +106,7 @@ public class BaseDatos {
    
     public ResultSet dameCtaPorCliente2(String nombreCliente) {
 
-        Connection conn = null;
-        PreparedStatement ps = null;
-        ResultSet rs = null;
+ 
 
         try {
 
@@ -138,11 +126,7 @@ public class BaseDatos {
     
     
     public void insertNuevoCliente(Cliente nuevoCliente){
-        
-        Connection conn=null;
-        ResultSet rs = null;
-        PreparedStatement ps = null;
-        
+      
         
         try{
             
@@ -167,10 +151,6 @@ public class BaseDatos {
     
     public void insertNuevaObra(Obra nuevaObra){
         
-        Connection conn=null;
-        ResultSet rs = null;
-        PreparedStatement ps = null;
-        
         
         try{
             
@@ -194,10 +174,6 @@ public class BaseDatos {
     
     public ArrayList selectObra(int criterio){
         
-        Connection conn = null;
-        ResultSet rs = null;
-        Statement st = null;
-        PreparedStatement ps = null;
         
          ArrayList<Obra> listaObra = new ArrayList<>();
         
@@ -227,14 +203,38 @@ public class BaseDatos {
          return listaObra;
     }
     
-   
+   public ArrayList<CtaCorriente> getCtaCorriente(int idcliente) {
+        ArrayList<CtaCorriente> listarCta = new ArrayList<CtaCorriente>();
+
+        try {
+            st = conn.createStatement();
+            rs = st.executeQuery("SELECT * FROM cta_corriente WHERE ID_CLIENTE = " + idcliente + " ORDER BY `cta_corriente`.`FECHA` ASC");
+
+            while (rs.next()) {
+                //  ( clave, nombre, descripcion, stock, codigoProveedor
+                int idCta= rs.getInt("ID_CTACORRIENTE");
+                String fecha = rs.getString("FECHA");
+                String descripcion = rs.getString("DESCRIPCION");
+               double debe = rs.getDouble("DEBE");
+               double haber = rs.getDouble("HABER");
+               double saldo = rs.getDouble("SALDO");
+               int idCliente = rs.getInt("ID_CLIENTE");
+
+                CtaCorriente cta = new CtaCorriente(idCta, fecha, descripcion, debe,haber,saldo,idCliente);
+
+                listarCta.add(cta);
+
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+
+        }
+        return listarCta;
+    }
     
     public ArrayList selectClientes(){
-        
-        Connection conn = null;
-        ResultSet rs = null;
-        Statement st=null;
-        
+    
         ArrayList<Cliente> listaClientes = new ArrayList<>();
         
         try{
@@ -264,11 +264,6 @@ public class BaseDatos {
     }
     
      public void insertRemito(Remito remito){
-        
-        Connection conn = null;
-        ResultSet rs = null;
-        PreparedStatement ps=null;
-        
        
         try{
             
@@ -294,11 +289,8 @@ public class BaseDatos {
     }
     
      
-      public ArrayList selectObra(){
+      public ArrayList selectObra(){        
         
-        Connection conn = null;
-        ResultSet rs = null;
-        Statement st=null;
         
         ArrayList<Obra> listaobra = new ArrayList<>();
         
@@ -329,4 +321,71 @@ public class BaseDatos {
     
     
     private Conexion miConexion;
+
+    public void insertarCtaCorrienteCliente(CtaCorriente cta) {
+          try {
+
+            String sql = "INSERT INTO cta_corriente (FECHA,DESCRIPCION,DEBE,HABER,SALDO,ID_CLIENTE) VALUES (?,?,?,?,?,?)";
+
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, cta.getFecha());
+            ps.setString(2, cta.getDescripcion());
+            ps.setDouble(3, cta.getDebe());
+            ps.setDouble(4, cta.getHaber());
+            ps.setDouble(5, cta.getSaldo());
+            ps.setInt(6, cta.getIdCliente());
+
+            ps.execute();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void eliminarFilaCtaCorrienteCliente(CtaCorriente cta) {
+         try {
+
+            ps = conn.prepareStatement("DELETE FROM cta_corriente WHERE ID_CTACORRIENTE=?");
+
+            ps.setInt(1, cta.getIdCta());
+
+            ps.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public ArrayList<CtaCorriente> ctaCorrienteClientePorFechas(int idCta, String fechaComoCadena, String fechaDeHoy) {
+          ArrayList<CtaCorriente> listaCta = new ArrayList<CtaCorriente>();
+
+        try {
+
+            ps = conn.prepareStatement("SELECT * FROM cta_corriente WHERE ID_CLIENTE=? AND FECHA BETWEEN ? AND ? ORDER BY `cta_corriente`.`ID_CTACORRIENTE` ASC");
+            ps.setInt(1,idCta);
+            ps.setString(2, fechaComoCadena);
+            ps.setString(3, fechaDeHoy);
+            
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+
+                int idCuenta = rs.getInt(1);
+                String fecha = rs.getString(2);
+                String descripcion = rs.getString(3);
+                double debe = rs.getDouble(4);
+                double haber = rs.getDouble(5);
+                double saldo = rs.getDouble(6);
+                int id_Cliente = rs.getInt(7);
+
+                CtaCorriente cta = new CtaCorriente(idCta, fecha, descripcion, debe, haber, saldo, id_Cliente);
+
+                listaCta.add(cta);
+            }
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return listaCta;
+    }
 }

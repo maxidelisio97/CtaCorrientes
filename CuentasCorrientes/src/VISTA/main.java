@@ -23,10 +23,11 @@ public class main {
         FrameCliente frameCliente = new FrameCliente();
         FrameRemito frameRemito = new FrameRemito();
         FrameObra frameObra = new FrameObra();
+        FrameVerCtaCorriente frameCtaCorriente = new FrameVerCtaCorriente();
         
        vista.setVisible(true);
        
-       ControladorEvento controlador = new ControladorEvento(vista,bd,frameCliente,frameObra,frameRemito);
+       ControladorEvento controlador = new ControladorEvento(vista,bd,frameCliente,frameObra,frameRemito,frameCtaCorriente);
        
       /*  SwingUtilities.invokeLater(new Runnable(){
             @Override

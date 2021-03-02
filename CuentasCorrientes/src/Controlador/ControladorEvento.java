@@ -4,12 +4,16 @@ import Modelo.BaseDatos;
 import Modelo.Cliente;
 import Modelo.CopiarFicheros;
 import Modelo.CrearCarpetaCliente;
+import Modelo.CtaCorriente;
 import Modelo.Obra;
 import Modelo.Remito;
 import VISTA.FrameCliente;
 import VISTA.FrameObra;
 import VISTA.FrameRemito;
 import VISTA.Principal;
+import VISTA.CambiaPanel;
+import VISTA.FrameVerCtaCorriente;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +29,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,12 +47,14 @@ public class ControladorEvento {
     FrameObra frameObra;
     FrameRemito frameRemito;
     FrameCliente frameCliente;
+    FrameVerCtaCorriente frameCtaCorriente;
 
     private BaseDatos bd;
     private DefaultTableModel modeloTablaRemitos = new DefaultTableModel();
 
     private DefaultComboBoxModel modeloComboObra = new DefaultComboBoxModel();
-    private DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
+    public DefaultComboBoxModel modeloComboClientes = new DefaultComboBoxModel();
+   
     private final String rutaPrincipal = "C:/Users/maxid/remitos";
     private CrearCarpetaCliente createFile;
     String rutaRemito = "";
@@ -56,7 +63,7 @@ public class ControladorEvento {
     private String path = null;
 
     public ControladorEvento(Principal vista, BaseDatos bd, FrameCliente frameCliente, FrameObra frameObra,
-            FrameRemito frameRemito) {
+            FrameRemito frameRemito, FrameVerCtaCorriente frameCtaCorriente) {
 
         this.vista = vista;
         this.bd = bd;
@@ -64,8 +71,10 @@ public class ControladorEvento {
         this.frameCliente = frameCliente;
         this.frameObra = frameObra;
         this.frameRemito = frameRemito;
+        this.frameCtaCorriente = frameCtaCorriente;
 
         cargarModeloTabla();
+         cargarModeloTablaCtaCorriente();
         cargarModeloCombocliente();
         cargarModeloComboObra();
         frameObra.comboClientes.setModel(modeloComboClientes);
@@ -89,10 +98,50 @@ public class ControladorEvento {
                 tablaGastosMouseClicked(evt);
             }
         });
+        
+        this.frameCtaCorriente.btnEliminarRegistro.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    int numFilas = frameCtaCorriente.tablaCtaCorriente.getSelectedRow();
+        int filaSelec =frameCtaCorriente.modeloTablaCtaCorriente.getRowCount();
+        if (filaSelec > 0) {
+            int quitar = JOptionPane.showConfirmDialog(frameCtaCorriente, "¿ Desea eliminar el registro seleccionado ?");
+            if (quitar == 0) {
+                if (numFilas == -1) {
+                    JOptionPane.showMessageDialog(frameCtaCorriente, "Debe seleccionar el registro que desea quitar", "Error", JOptionPane.ERROR_MESSAGE);
+                } else {
+                    CtaCorriente cta = (CtaCorriente) frameCtaCorriente.modeloTablaCtaCorriente.getValueAt(frameCtaCorriente.tablaCtaCorriente.getSelectedRow(), 1);
+                    bd.eliminarFilaCtaCorrienteCliente(cta);
+
+                    cargarCtaCorrienteCliente();
+                }
+            }
+        }
+            }
+            
+        });
 
         this.frameRemito.btnGuardar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                
+            }
+
+        });
+
+        this.vista.btnVerRemito.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if (!frameCtaCorriente.isVisible()) {
+
+                    vista.escritorio.add(frameCtaCorriente);
+                    vista.escritorio.getDesktopManager().maximizeFrame(frameCtaCorriente);
+                    frameCtaCorriente.setVisible(true);
+                } else {
+                    vista.escritorio.getDesktopManager().maximizeFrame(frameCtaCorriente);
+                }
 
             }
 
@@ -119,30 +168,6 @@ public class ControladorEvento {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                /* new CambiaPanel(vista.escritorio, vista.panelMenu);
-                if (vista.btnRemito1.isSelected()) {
-                    vista.btnObra.setColorNormal(new Color(214, 217, 223));
-                    vista.btnObra.setColorHover(new Color(204, 204, 204));
-                    vista.btnObra.setColorPressed(new Color(214, 217, 223));
-
-                    vista.btnRemito1.setColorNormal(new Color(204, 204, 204));
-                    vista.btnRemito1.setColorHover(new Color(204, 204, 204));
-                    vista.btnRemito1.setColorPressed(new Color(204, 204, 204));
-
-                    vista..setColorNormal(new Color(214, 217, 223));
-                    vista.labelNuevoCliente.setColorHover(new Color(204, 204, 204));
-                    vista.labelNuevoCliente.setColorPressed(new Color(214, 217, 223));
-
-                    this.btnVerRemito.setColorNormal(new Color(214, 217, 223));
-                    this.btnVerRemito.setColorHover(new Color(204, 204, 204));
-                    this.btnVerRemito.setColorPressed(new Color(214, 217, 223));
-
-                } else {
-                    this.btnRemito1.setColorNormal(new Color(214, 217, 223));
-                    this.btnRemito1.setColorHover(new Color(204, 204, 204));
-                    this.btnRemito1.setColorPressed(new Color(214, 217, 223));
-
-                }*/
                 if (!frameRemito.isVisible()) {
 
                     vista.escritorio.add(frameRemito);
@@ -154,6 +179,42 @@ public class ControladorEvento {
 
             }
 
+        });
+        
+        this.frameCtaCorriente.btnBuscarPorFecha.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaComoCadena = sdf.format(frameCtaCorriente.txtFecha.getDate());
+        String fechaDeHoy = sdf.format(new java.util.Date().getTime());
+        int idCliente = frameCtaCorriente.comboClientes.getSelectedIndex() +1;
+        ArrayList<CtaCorriente> lista = bd.ctaCorrienteClientePorFechas(idCliente,fechaComoCadena, fechaDeHoy);
+        int numeroCta = lista.size();
+        frameCtaCorriente.modeloTablaCtaCorriente.setNumRows(numeroCta);
+
+        for (int i = 0; i < numeroCta; i++) {
+
+            CtaCorriente cta = lista.get(i);
+            int idCta = cta.getIdCta();
+            String fecha = cta.getFecha();
+            String descripcion = cta.getDescripcion();
+            double debe = cta.getDebe();
+            double haber = cta.getHaber();
+            double saldo = cta.getSaldo();
+            int id_Cliente = cta.getIdCliente();
+
+            frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(fecha, i, 0);
+            frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(cta, i, 1);
+             frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(debe, i, 2);
+            frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(haber, i, 3);
+            frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(saldo, i, 4);
+
+        }
+           double sumatoria = getSaldoCtaCorriente();
+            frameCtaCorriente.txtSaldo.setText(String.valueOf(sumatoria));
+
+            }
+            
         });
 
         this.vista.btnLabelCliente.addMouseListener(new MouseAdapter() {
@@ -189,6 +250,7 @@ public class ControladorEvento {
 
                 Cliente nuevoCliente = enviarCliente();
                 bd.insertNuevoCliente(nuevoCliente);
+
             }
 
         });
@@ -251,15 +313,15 @@ public class ControladorEvento {
                     limpiarTabla();
                     String criterio = vista.txtBuscarRemitoCliente.getText();
                     String obra = vista.txtBuscarRemitoObra.getText();
-                 //   recibeCTAPorCriterio(criterio, obra);
-                           if (obra.equals("")) {
-                           
-                           recibeCTAPorCliente(criterio);
+                    //   recibeCTAPorCriterio(criterio, obra);
+                    if (obra.equals("")) {
+
+                        recibeCTAPorCliente(criterio);
 
                     } else if (!obra.equals("") && !criterio.equals("")) {
-                        
-                           recibeCTAPorClienteyObra(criterio, obra);
-                        
+
+                        recibeCTAPorClienteyObra(criterio, obra);
+
                     }
 
                     frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
@@ -273,29 +335,52 @@ public class ControladorEvento {
 
                 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 
-                           limpiarTabla();
+                    limpiarTabla();
                     String criterio = vista.txtBuscarRemitoCliente.getText();
                     String obra = vista.txtBuscarRemitoObra.getText();
-                    
-                    
-                       if (obra.equals("")) {
-                           
-                           recibeCTAPorCliente(criterio);
+
+                    if (obra.equals("")) {
+
+                        recibeCTAPorCliente(criterio);
 
                     } else if (!obra.equals("") && !criterio.equals("")) {
-                        
-                           recibeCTAPorClienteyObra(criterio, obra);
-                        
+
+                        recibeCTAPorClienteyObra(criterio, obra);
+
                     }
                     //     recibeCTAPorCriterio(criterio,obra);
 
-                        frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
-                 
+                    frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
 
                 }
 
             }
 
+        });
+
+        this.frameCtaCorriente.btnBuscarCta.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+               cargarCtaCorrienteCliente();
+
+            }
+
+        });
+        
+        this.frameCtaCorriente.btnGuardar.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                  int filas = frameCtaCorriente.modeloTablaCtaCorriente.getRowCount();
+        if (filas == 0) {
+            insertarMovimientoEnCtaCorriente();
+        } else {
+            ActualizarCuentaCorriente();
+        }
+        frameCtaCorriente.txtDebe.setText("");
+         frameCtaCorriente.txtPaga.setText("");
+            }
+            
         });
 
         frameRemito.ComboClientes.addActionListener(new ActionListener() {
@@ -321,13 +406,13 @@ public class ControladorEvento {
         frameRemito.txtBuscarRemito.addKeyListener(new KeyAdapter() {
 
             @Override
-            public void keyPressed(KeyEvent e) {
+            public void keyReleased(KeyEvent e) {
 
                 limpiarTabla();
 
                 String criterio = frameRemito.txtBuscarRemito.getText();
 
-                  recibeCTAPorCriterio(criterio);
+                recibeCTAPorCriterio(criterio);
                 frameRemito.tablaRemitos.setModel(modeloTablaRemitos);
             }
 
@@ -375,12 +460,12 @@ public class ControladorEvento {
         }
 
     }
-    
+
     public void recibeCTAPorCliente(String cliente) {
 
         ResultSet rs = null;
 
-            rs = bd.dameCtaPorCliente2(cliente);
+        rs = bd.dameCtaPorCliente2(cliente);
         try {
 
             ResultSetMetaData metaData = rs.getMetaData();
@@ -410,10 +495,6 @@ public class ControladorEvento {
         }
 
     }
-    
-     
-
-    
 
     public void recibeCTAPorClienteyObra(String cliente, String obra) {
 
@@ -476,7 +557,10 @@ public class ControladorEvento {
         }
 
         Cliente cliente = new Cliente(nombreCliente, telCliente, email, esInst);
-
+        JOptionPane.showMessageDialog(null, "El cliente ha sido registrado satisfactoriamente");
+        frameCliente.txtNombreCliente.setText("");
+        frameCliente.txtTelCliente.setText("");
+        frameCliente.txtEmailCliente.setText("");
         return cliente;
 
     }
@@ -493,6 +577,16 @@ public class ControladorEvento {
 
     }
 
+    public void cargarModeloTablaCtaCorriente() {
+
+        //   modeloTablaRemitos.addColumn("Id");
+        frameCtaCorriente.modeloTablaCtaCorriente.addColumn("Fecha");
+        frameCtaCorriente.modeloTablaCtaCorriente.addColumn("Descripción");
+        frameCtaCorriente.modeloTablaCtaCorriente.addColumn("Debe");
+        frameCtaCorriente.modeloTablaCtaCorriente.addColumn("Pagó");
+        frameCtaCorriente.modeloTablaCtaCorriente.addColumn("Saldo");
+       
+    }
     public void cargarModeloTabla() {
 
         //   modeloTablaRemitos.addColumn("Id");
@@ -513,6 +607,7 @@ public class ControladorEvento {
 
         }
         frameRemito.ComboClientes.setModel(modeloComboClientes);
+        frameCtaCorriente.comboClientes.setModel(modeloComboClientes);
     }
 
     private void cargarModeloComboObra() {
@@ -604,6 +699,140 @@ public class ControladorEvento {
 
         bd.insertRemito(remito);
 
+    }
+    
+    private void cargarCtaCorrienteCliente(){
+         int idCliente = frameCtaCorriente.comboClientes.getSelectedIndex() + 1;
+
+                ArrayList<CtaCorriente> ctaCliente = bd.getCtaCorriente(idCliente);
+                int numeroCta = ctaCliente.size();
+                frameCtaCorriente.modeloTablaCtaCorriente.setNumRows(numeroCta);
+
+                if (numeroCta == 0) {
+                    JOptionPane.showMessageDialog(null, "El cliente no tiene iniciada una cuenta corriente ");
+
+                } else {
+
+                    for (int i = 0; i < numeroCta; i++) {
+
+                        CtaCorriente cta = ctaCliente.get(i);
+                        int idCta = cta.getIdCta();
+                        String fecha = cta.getFecha();
+                        String descripcion = cta.getDescripcion();
+                        double debe = cta.getDebe();
+                        double haber = cta.getHaber();
+                        double saldo = cta.getSaldo();
+                        int id_Cliente = cta.getIdCliente();
+
+                        frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(fecha, i, 0);
+                        frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(cta, i, 1);
+                        frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(debe, i, 2);
+                        frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(haber, i, 3);
+                        frameCtaCorriente.modeloTablaCtaCorriente.setValueAt(saldo, i, 4);
+
+                    }
+                    double sumatoria = getSaldoCtaCorriente();
+                    frameCtaCorriente.txtSaldo.setText(String.valueOf(sumatoria));
+                }
+    }
+    
+      private double getSaldoCtaCorriente() {
+
+        int numFilas = frameCtaCorriente.modeloTablaCtaCorriente.getRowCount() - 1;
+        double sumatoria = 0;
+
+        double importe = (double) frameCtaCorriente.modeloTablaCtaCorriente.getValueAt(numFilas, 4);
+        sumatoria += (importe);
+
+        return sumatoria;
+
+    }
+    
+     private void insertarMovimientoEnCtaCorriente() {
+        try{
+        double debe = 0;
+        double saldo = 0;
+        double pago = 0;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaComoCadena = sdf.format(frameCtaCorriente.txtFecha.getDate());
+        String descripcion = frameCtaCorriente.txtDescripcion.getText();
+        String stringDebe = frameCtaCorriente.txtDebe.getText();
+        String stringPago = frameCtaCorriente.txtPaga.getText();
+        int idCliente = frameCtaCorriente.comboClientes.getSelectedIndex() + 1;
+        
+
+        if (!stringDebe.isEmpty() && !stringPago.isEmpty()) {
+            debe = Double.parseDouble(stringDebe);
+             pago = Double.parseDouble(stringPago);
+             saldo = debe - pago;
+           CtaCorriente movimientoCta = new CtaCorriente(fechaComoCadena, descripcion, debe, pago, saldo, idCliente);
+
+            bd.insertarCtaCorrienteCliente(movimientoCta);
+           
+        }else if (!stringPago.isEmpty()){
+              pago = Double.parseDouble(stringPago);
+            saldo -= pago;
+            CtaCorriente movimientoCta = new CtaCorriente(fechaComoCadena, descripcion, debe, pago, saldo, idCliente);
+
+            bd.insertarCtaCorrienteCliente(movimientoCta);
+            
+        }
+        else {
+            debe = Double.parseDouble(stringDebe);
+            saldo += debe;
+            CtaCorriente movimientoCta = new CtaCorriente(fechaComoCadena, descripcion, debe, pago, saldo, idCliente);
+
+            bd.insertarCtaCorrienteCliente(movimientoCta);
+        }
+        cargarCtaCorrienteCliente();
+        double sumatoria = getSaldoCtaCorriente();
+        frameCtaCorriente.txtSaldo.setText(String.valueOf(sumatoria));       
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "La fecha debe ser ingresada");
+        }
+    }
+    private void ActualizarCuentaCorriente() {
+       try{
+        double debe = 0;
+        double pago = 0;
+        double saldoActualizado = 0;
+        int fila = frameCtaCorriente.modeloTablaCtaCorriente.getRowCount() - 1;
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String fechaComoCadena = sdf.format(frameCtaCorriente.txtFecha.getDate());
+        String descripcion = frameCtaCorriente.txtDescripcion.getText();
+        int idCliente = frameCtaCorriente.comboClientes.getSelectedIndex() + 1;
+        String stringDebe =frameCtaCorriente.txtDebe.getText();
+        String stringPago = frameCtaCorriente.txtPaga.getText();
+        double saldo = (double) frameCtaCorriente.modeloTablaCtaCorriente.getValueAt(fila, 4);
+
+        if (!stringDebe.isEmpty() && !stringPago.isEmpty()) {
+              debe = Double.parseDouble(stringDebe);
+             pago = Double.parseDouble(stringPago);
+          saldoActualizado = (saldo +debe) - pago;
+              CtaCorriente movimientoCta = new CtaCorriente(fechaComoCadena, descripcion, debe, pago, saldoActualizado, idCliente);
+
+            bd.insertarCtaCorrienteCliente(movimientoCta);
+        } else if ( !stringPago.isEmpty()) {
+               pago = Double.parseDouble(stringPago);
+            saldoActualizado = saldo - pago;
+            CtaCorriente movimientoCta = new CtaCorriente(fechaComoCadena, descripcion, debe, pago, saldoActualizado, idCliente);
+
+            bd.insertarCtaCorrienteCliente(movimientoCta);
+        } else if (!stringDebe.isEmpty()) {
+             debe = Double.parseDouble(stringDebe);
+            saldoActualizado = saldo + debe;
+            CtaCorriente movimientoCta = new CtaCorriente(fechaComoCadena, descripcion, debe, pago, saldoActualizado, idCliente);
+
+            bd.insertarCtaCorrienteCliente(movimientoCta);
+        }
+        cargarCtaCorrienteCliente();       
+        double sumatoria = getSaldoCtaCorriente();
+        frameCtaCorriente.txtSaldo.setText(String.valueOf(sumatoria));
+       }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(null, "La fecha debe ser ingresada");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Carácter inválido","Error",JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     private File fichero;
